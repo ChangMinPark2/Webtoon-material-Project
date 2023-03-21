@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: white;
+    font-size:30px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkslategrey;
+    padding: 30px 20px;
+}
+.hdr {
+    padding: 30px 20px;
+    text-align: center
+}
+h1 {
+    margin:0;
+}
+.content {
+    padding: 10px 50px;
+    text-align: center
+}
+.field {
+    margin:10px 0px;
+}
+.field input[id="user_id"]{
+    width:430px;
+}
+.field button{
+    height: 35px;
+    width: 70px;
+}
+input {
+    width: 500px;
+    line-height: 30px;
+}
+.field input[id="user_email"]{
+    width:240px;
+}
+select{
+    height: 35px;
+    width:240px;
+}
+.btn {
+   padding: 20px;
+   items-align:center;
+}
+.btn button{
+   height: 35px; width:100px;
+   margin:20px 125px;
+   background-color: darkslategrey;
+   color:white;
+   border: 1px solid white;
+   border-radius: 4px;
+}
+
+
+
+
