@@ -1,26 +1,40 @@
 body{
     margin: 0;
-    font-family: "Source Code Pro";
+    font-family: wfont_f20312_51504daf241248068326c026a1945754, wf_51504daf241249068326c026a, orig_futura_it_book;
 }
 a{
     text-decoration: none;
-    color: white;
+    color: #A16B54;
 }
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: darkslategrey;
+    background-color: white;
     padding: 8px 12px;
+}
+
+.contents{
+    display: flex;
+    justify-content: space-between;
+}
+
+.products{
+    display: flex;
+    justify-content: space-between;
 }
 .contents{
     padding: 60px 12px;
 }
 
+.top{
+    font-size: 20px;
+}
+
 
 .navbar__logo{
-    font-size: 24px;
-    color: white;
+    font-size: 30px;
+    color: #E4C6B0;
 }
 
 .navbar__logo i {
@@ -31,6 +45,7 @@ a{
     display: flex;
     list-style: none;
     padding-left: 0;
+    font-size: 25px;
 }
 
 .navbar__menu li{
