@@ -3,24 +3,29 @@ package project.nftshop.persistence.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.nftshop.persistence.BaseEntity;
+import project.nftshop.service.model.Gender;
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_users")
-public class Users {
+@Table(name = "tbl_user")
+@AttributeOverride(
+        name = "id",
+        column = @Column(name = "user_id", length = 4)
+)
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "users_id", length = 4)
-    private Long id;
+public class User extends BaseEntity {
 
     @Column(name = "identity", unique = true, length = 30)
     private String identity;
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "birth")
+    private String birth;
 
     @Column(name = "name", length = 30)
     private String name;
@@ -31,16 +36,23 @@ public class Users {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "gender")
+    private Gender gender;
+
     @Builder
-    public Users(String identity,
-                 String password,
-                 String name,
-                 String cellphone,
-                 String email) {
+    public User(String identity,
+                String password,
+                String birth,
+                String name,
+                String cellphone,
+                String email,
+                Gender gender) {
         this.identity = identity;
         this.password = password;
+        this.birth =  birth;
         this.name = name;
         this.cellphone = cellphone;
         this.email = email;
+        this.gender = gender;
     }
 }
