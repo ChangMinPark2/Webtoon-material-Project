@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="ProductDetailStyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WMSS</title>
+  <script src="https://kit.fontawesome.com/88f0a2c689.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar__logo">
+    <i class="fa-solid fa-book-open"></i>
+    <a href="">WMSS</a>  <!--아이콘 클릭했을 때 홈 화면으로 넘어가게 해주는 부분-->
+  </div>
+
+  <ul class="navbar__menu">
+    <li><a href="">shop</a></li>
+    <li><a href="">about</a></li>
+    <li><a href="">contact</a></li>
+    <li><a href="">popular</a></li>
+  </ul>
+
+  <ui class="navbar__icons">
+    <li><i class="fa-brands fa-kickstarter">Cart</i></li>
+    <li><a href="">SignUp</a></li>
+    <li><a href="">SignIn</a></li>
+  </ui>
+
+  <a href="#" class="navbar__toogleBtn">
+    <i class="fa-solid fa-bars"></i>
+  </a>
+</nav>
+<div class="content">
+  <div class="img_details">
+    <div class="img_info">
+      <div class="slider">
+        <input type="radio" name="slide" id="slide1" checked>
+        <input type="radio" name="slide" id="slide2">
+        <input type="radio" name="slide" id="slide3">
+        <input type="radio" name="slide" id="slide4">
+        <ul id="imgholder" class="imgs">
+          <li><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="제품 상세 이미지1"></li>
+          <li><img src="https://static.wixstatic.com/media/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.webp" alt="제품 상세 이미지2"></li>
+          <li><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="제품 상세 이미지3"></li>
+          <li><img src="https://static.wixstatic.com/media/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.webp" alt="제품 상세 이미지4"></li>
+        </ul>
+        <div class="bullets">
+          <label for="slide1">&nbsp;</label>
+          <label for="slide2">&nbsp;</label>
+          <label for="slide3">&nbsp;</label>
+          <label for="slide4">&nbsp;</label>
+        </div>
+      </div>
+
+
+      <div class="information">
+        <p>A new style! A wink to the oldschool 'knapzak'. The tartan fabric is made from recycled polyester. The pouch bag closes with two drawstring at the top. The lining has an acorn pattern and is waterproof. The shoulder handle is adjustable by pulling the stopper as tight as you want. This way, you can wear it both over your shoulder as around your waist.</p>
+        <p>size - 14.5 x 8 x 21 cm <br>
+          adjustable shoulder handle <br>
+          material outside - recycled polyester & cotton canvas <br>
+          material inside - waterproof nylon</p>
+
+      </div>
+    </div>
+
+
+
+    <div class="content_details">
+      <div class="detail">
+        <h2>pouch bag | adventure collection | tartan map green</h2>
+      </div>
+      <div class="detail">
+        <div>
+          <h3 class="price">
+            €19.95
+          </h3>
+        </div>
+      </div>
+      <div class="detail">
+        <div class="detail_quantity">
+          <label for="Quantity">Quantity</label>
+          <input type="number" id="Quantity" value="1">
+        </div>
+      </div>
+      <button class="add_button">Add</button>
+    </div>
+
+
+  </div>
+</div>
+
+
+</body>
+</html>
