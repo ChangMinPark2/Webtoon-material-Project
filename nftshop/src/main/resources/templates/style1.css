@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    font-family: wfont_f20312_51504daf241248068326c026a1945754, wf_51504daf241249068326c026a, orig_futura_it_book;
+    font-family: "Source Code Pro";
 }
 a{
     text-decoration: none;
@@ -14,6 +14,49 @@ a{
     padding: 8px 12px;
 }
 
+.add_product{
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 30px;
+    margin: 0px;
+    background-color: #A16B54;
+    padding: 5px;
+}
+
+
+.left {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+.right {
+    width: 50%;
+    float: right;
+}
+.container{
+    font-size: 30px;
+    font-family: "Source Code Pro";
+    color: #1e1c1b;
+    padding: 20px;
+    text-align: center;
+}
+
+.input_des{
+    width: 800px;
+    height: 500px;
+    text-align: right;
+    margin-left: 500px;
+
+}
+.p-5{
+
+    text-align: center;
+}
+
+.test3{
+    text-align: right;
+}
+
 .contents{
     display: flex;
     justify-content: space-between;
@@ -22,6 +65,14 @@ a{
 .products{
     display: flex;
     justify-content: space-between;
+}
+.product_style{
+    text-align: left;
+    margin-top: 70px;
+}
+
+.test1{
+    margin-left: 40px;
 }
 .contents{
     padding: 60px 12px;
