@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+    font-family:wfont_f20312_51504daf241248068326c026a1945754, wf_51504daf241249068326c026a, orig_futura_it_book;
+}
+a{
+    text-decoration: none;
+    color: #A16B54;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 8px 12px;
+}
+.navbar__logo{
+    font-size: 30px;
+    color: #E4C6B0;
+}
+
+.navbar__logo i {
+    color: #d49466;
+}
+
+.navbar__menu{
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    font-size: 25px;
+}
+
+.navbar__menu li{
+    padding : 8px 12px;
+}
+.navbar__menu li:hover{
+    background-color: #d49466;
+    border-radius: 4px;
+}
+.navbar__icons{
+    list-style: none;
+    color: #d49466;
+    display: flex;
+}
+
+.navbar__icons li{
+    padding: 8px 12px;
+}
+
+.navbar__toogleBtn{
+    display: none;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: #d49466;
+}
+.content {
+    background-color: white;
+}
+
+.img_details {
+    display: flex;
+    flex-direction: row;
+    width: 890px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+}
+.slider{
+    width: 500px;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+}
+.slider input[type=radio]{
+    display: none;
+}
+ul.imgs{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+ul.imgs li{
+    position: absolute;
+    left: 640px;
+    transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+    padding: 0;
+    margin: 0;
+}
+li>img {
+    width: 500px;
+    height:600px;
+}
+.bullets{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+.bullets label{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.55);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
+.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+    background-color: #fff;
+}
+.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+    left: 0;
+    transition: 0.5s;
+    z-index:1;
+}
+
+
+
+
+.img_info {
+    width: 500px;
+}
+h2 {
+    width: 100%;
+    font-size: 35px;
+}
+.content_details {
+    width: 360px;
+    padding-left: 30px;
+}
+.detail {
+    margin-bottom: 50px;
+}
+.detail>h2 {
+    margin-top: 0px;
+    font-size: 35px;
+    text-align: left;
+    word-wrap: break-word;
+    font-weight: normal;
+}
+.price{
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 16px;
+    color: #A16B54;
+}
+label {
+    margin-bottom: 8px;
+    color:#d49466;
+}
+.detail_quantity {
+    display: flex;
+    flex-direction: column;
+}
+input[type="number"] {
+    width: 80px;
+    height: 40px;
+    outline-style: none;
+    border: 1px solid #c9c9c9;
+    border-radius: 0;
+
+    border-color: gray;
+    padding-left:  16px;
+}
+.add_button{
+    width: 100%;
+    height: 35px;
+    background-color: #d49466;
+    color: white;
+    border: 0;
+}
