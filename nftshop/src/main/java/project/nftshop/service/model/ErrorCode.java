@@ -12,7 +12,10 @@ public enum ErrorCode {
     FAIL_NULL(400,"실행실패입니다."),
     //user
     USER_DUPLICATE(400, "회원 아이디가 중복되었습니다."),
-    USER_NOT_FOUND(400, "해당 회원을 찾을 수 없습니다.");
+    USER_NOT_FOUND(400, "해당 회원을 찾을 수 없습니다."),
+    WRONG_CHECK_PASSWORD(400, "비밀번호와 확인 비밀번호가 다릅니다."),
+    WRONG_PASSWORD(400, "비밀번호가 틀렸습니다."),
+    DUPLICATED_CELLPHONE(400, "중복된 전화번호 입니다.");
 
     private int status;
 

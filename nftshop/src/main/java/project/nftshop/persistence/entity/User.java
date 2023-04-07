@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.nftshop.persistence.BaseEntity;
 import project.nftshop.service.model.Gender;
-import project.nftshop.service.model.request.CreateUserDto;
+import project.nftshop.service.model.request.PasswordUpdateUserDto;
+import project.nftshop.service.model.request.SignUpUserDto;
+import project.nftshop.service.model.request.UpdateUserDto;
 
 import javax.persistence.*;
 
@@ -58,7 +60,7 @@ public class User extends BaseEntity {
         this.gender = gender;
     }
 
-    public static User createOf(CreateUserDto createUserDto){
+    public static User createOf(SignUpUserDto createUserDto){
         return User.builder()
                 .identity(createUserDto.getIdentity())
                 .password(createUserDto.getPassword())
@@ -66,7 +68,20 @@ public class User extends BaseEntity {
                 .name(createUserDto.getName())
                 .cellphone(createUserDto.getCellphone())
                 .email(createUserDto.getEmail())
-                .gender(Gender.valueOf(createUserDto.getGender()))
+                .gender(Gender.of(createUserDto.getGender()))
                 .build();
     }
+
+    public void updatePassword(PasswordUpdateUserDto passwordUpdateUserDto){
+        this.password = passwordUpdateUserDto.getNewPassword();
+    }
+
+    public void updateUser(UpdateUserDto updateUserDto){
+        this.birth = updateUserDto.getBirth();
+        this.name = updateUserDto.getName();
+        this.cellphone = updateUserDto.getCellphone();
+        this.email = updateUserDto.getEmail();
+        this.gender = Gender.of(updateUserDto.getGender());
+    }
+
 }

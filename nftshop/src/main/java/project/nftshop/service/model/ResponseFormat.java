@@ -30,4 +30,30 @@ public class ResponseFormat <T>{
                 .status(ErrorCode.SUCCESS_NULL.getStatus())
                 .build();
     }
+    public static <T> ResponseFormat ok(T data){
+        return ResponseFormat.builder()
+                .result(true)
+                .data(data)
+                .message(ErrorCode.SUCCESS_VALUE.getMessage())
+                .status(ErrorCode.SUCCESS_VALUE.getStatus())
+                .build();
+    }
+
+    public static <T> ResponseFormat ok(String message){
+        return ResponseFormat.builder()
+                .result(true)
+                .data(null)
+                .message(message)
+                .status(ErrorCode.SUCCESS_VALUE.getStatus())
+                .build();
+    }
+
+    public static ResponseFormat fail(String message){
+        return ResponseFormat.builder()
+                .result(false)
+                .data(null)
+                .message(ErrorCode.FAIL_NULL.getMessage())
+                .status(ErrorCode.FAIL_NULL.getStatus())
+                .build();
+    }
 }
