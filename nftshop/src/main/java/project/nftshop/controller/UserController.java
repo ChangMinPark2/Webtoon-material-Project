@@ -19,7 +19,7 @@ public class UserController {
         userService.createUser(createUserDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/api/v1/user/myPage")
     public void deleteUser(@RequestBody @Valid DeleteUserDto deleteUserDto){
         userService.deleteUser(deleteUserDto);
     }
