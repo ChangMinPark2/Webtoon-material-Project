@@ -3,11 +3,12 @@ package project.nftshop.service.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.nftshop.infra.error.exception.*;
 import project.nftshop.persistence.entity.User;
 import project.nftshop.persistence.repository.UserRepository;
-import project.nftshop.service.model.ResponseFormat;
-import project.nftshop.service.model.exception.*;
+import project.nftshop.infra.error.model.ResponseFormat;
 import project.nftshop.service.model.request.*;
+import project.nftshop.service.model.response.UserResDtos;
 
 @Service
 @RequiredArgsConstructor
@@ -21,13 +22,13 @@ public class UserService {
      * 회원가입 기능
      * */
     @Transactional
-    public void createUser(SignUpUserDto createUserDto){
+    public void createUser(UserReqDtos.CREATE create){
 
-        checkIdentity(createUserDto.getIdentity());
-        checkCellPhone(createUserDto.getCellphone());
-        checkPassword(createUserDto.getPassword(), createUserDto.getCheckPassword());
+        checkIdentity(create.getIdentity());
+        checkCellPhone(create.getCellphone());
+        checkPassword(create.getPassword(), create.getCheckPassword());
 
-        final User userBuild = User.createOf(createUserDto);
+        final User userBuild = User.toUserCreate(create);
 
         userRepository.save(userBuild);
     }
@@ -37,13 +38,21 @@ public class UserService {
      * 로그인 기능, ResponseFormat을 통해 로그인을 했을 경우 성공알림을 처리해줌.
      * */
     @Transactional
-    public void signIn(SignInUserDto signInUserDto){
+    public void signIn(UserReqDtos.SIGNIN signIn){
 
-        final User user = userRepository.findByIdentity(signInUserDto.getIdentity())
+        final User user = userRepository.findByIdentity(signIn.getIdentity())
                 .orElseThrow(() -> new UserNotFoundException());
 
-        checkPasswordMatch(user.getPassword(), signInUserDto.getPassword());
+        checkPasswordMatch(user.getPassword(), signIn.getPassword());
         ResponseFormat.ok(user);
+    }
+
+    public UserResDtos.READ readUser(String identity){
+
+        final User user = userRepository.findByIdentity(identity)
+                .orElseThrow(() -> new UserNotFoundException());
+
+        return user.readToEntity(user);
     }
 
     /**
@@ -51,14 +60,14 @@ public class UserService {
      * 사용자 정보 수정, User 엔티티 안에서 메소드를 호출함으로써 변경.
      * */
     @Transactional
-    public void updateUser(UpdateUserDto updateUserDto){
+    public void updateUser(UserReqDtos.UPDATE update){
 
-        User user = userRepository.findByIdentity(updateUserDto.getIdentity())
+        User user = userRepository.findByIdentity(update.getIdentity())
                 .orElseThrow(() -> new UserNotFoundException());
 
-        checkPasswordMatch(user.getPassword(), updateUserDto.getPassword());
+        checkPasswordMatch(user.getPassword(), update.getPassword());
 
-        user.updateUser(updateUserDto);
+        user.updateUser(update);
         userRepository.save(user);
 
     }
@@ -68,15 +77,15 @@ public class UserService {
      * 로그인 이후 새비밀번호와 확인 비밀번호 체크
      * */
     @Transactional
-    public void passwordUpdate(PasswordUpdateUserDto passwordUpdateUserDto){
+    public void passwordUpdate(UserReqDtos.PASSWORDUPDATE passwordUpdate){
 
-        User user = userRepository.findByIdentity(passwordUpdateUserDto.getIdentity())
+        User user = userRepository.findByIdentity(passwordUpdate.getIdentity())
                 .orElseThrow(() -> new UserNotFoundException());
 
-        checkPasswordMatch(user.getPassword(), passwordUpdateUserDto.getPassword());
-        checkPassword(passwordUpdateUserDto.getNewPassword(), passwordUpdateUserDto.getCheckPassword());
+        checkPasswordMatch(user.getPassword(), passwordUpdate.getPassword());
+        checkPassword(passwordUpdate.getNewPassword(), passwordUpdate.getCheckPassword());
 
-        user.updatePassword(passwordUpdateUserDto);
+        user.updatePassword(passwordUpdate);
         userRepository.save(user);
     }
 
@@ -85,12 +94,12 @@ public class UserService {
      * 회원삭제 기능
      * */
     @Transactional
-    public void deleteUser(DeleteUserDto deleteUserDto){
+    public void deleteUser(UserReqDtos.DELETE delete){
 
-        final User user = userRepository.findByIdentity(deleteUserDto.getIdentity())
+        final User user = userRepository.findByIdentity(delete.getIdentity())
                 .orElseThrow(() -> new UserNotFoundException());
 
-        checkPasswordMatch(user.getPassword(), deleteUserDto.getPassword());
+        checkPasswordMatch(user.getPassword(), delete.getPassword());
 
         userRepository.delete(user);
     }

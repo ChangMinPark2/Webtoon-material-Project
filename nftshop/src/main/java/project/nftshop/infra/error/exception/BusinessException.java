@@ -1,7 +1,7 @@
-package project.nftshop.service.model.exception;
+package project.nftshop.infra.error.exception;
 
 import lombok.Getter;
-import project.nftshop.service.model.ErrorCode;
+import project.nftshop.infra.error.model.ErrorCode;
 
 @Getter
 public class BusinessException extends RuntimeException {

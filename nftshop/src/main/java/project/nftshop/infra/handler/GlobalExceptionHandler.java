@@ -1,11 +1,11 @@
-package project.nftshop.service.model.handler;
+package project.nftshop.infra.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import project.nftshop.service.model.exception.BusinessException;
-import project.nftshop.service.model.ResponseFormat;
+import project.nftshop.infra.error.exception.BusinessException;
+import project.nftshop.infra.error.model.ResponseFormat;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

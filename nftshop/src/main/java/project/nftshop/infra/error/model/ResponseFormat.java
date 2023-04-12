@@ -1,4 +1,4 @@
-package project.nftshop.service.model;
+package project.nftshop.infra.error.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

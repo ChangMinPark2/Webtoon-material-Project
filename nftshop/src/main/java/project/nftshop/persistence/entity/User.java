@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.nftshop.persistence.BaseEntity;
 import project.nftshop.service.model.Gender;
-import project.nftshop.service.model.request.PasswordUpdateUserDto;
-import project.nftshop.service.model.request.SignUpUserDto;
-import project.nftshop.service.model.request.UpdateUserDto;
+import project.nftshop.service.model.request.UserReqDtos;
+import project.nftshop.service.model.response.UserResDtos;
 
 import javax.persistence.*;
 
@@ -60,28 +59,39 @@ public class User extends BaseEntity {
         this.gender = gender;
     }
 
-    public static User createOf(SignUpUserDto createUserDto){
+    public static User toUserCreate(UserReqDtos.CREATE create){
         return User.builder()
-                .identity(createUserDto.getIdentity())
-                .password(createUserDto.getPassword())
-                .birth(createUserDto.getBirth())
-                .name(createUserDto.getName())
-                .cellphone(createUserDto.getCellphone())
-                .email(createUserDto.getEmail())
-                .gender(Gender.of(createUserDto.getGender()))
+                .identity(create.getIdentity())
+                .password(create.getPassword())
+                .birth(create.getBirth())
+                .name(create.getName())
+                .cellphone(create.getCellphone())
+                .email(create.getEmail())
+                .gender(Gender.of(create.getGender()))
                 .build();
     }
 
-    public void updatePassword(PasswordUpdateUserDto passwordUpdateUserDto){
-        this.password = passwordUpdateUserDto.getNewPassword();
+    public static UserResDtos.READ readToEntity(User user){
+        return UserResDtos.READ.builder()
+                .identity(user.getIdentity())
+                .birth(user.getBirth())
+                .name(user.getName())
+                .cellphone(user.getCellphone())
+                .email(user.getEmail())
+                .gender(user.getGender())
+                .build();
     }
 
-    public void updateUser(UpdateUserDto updateUserDto){
-        this.birth = updateUserDto.getBirth();
-        this.name = updateUserDto.getName();
-        this.cellphone = updateUserDto.getCellphone();
-        this.email = updateUserDto.getEmail();
-        this.gender = Gender.of(updateUserDto.getGender());
+    public void updatePassword(UserReqDtos.PASSWORDUPDATE passwordUpdate){
+        this.password = passwordUpdate.getNewPassword();
+    }
+
+    public void updateUser(UserReqDtos.UPDATE update){
+        this.birth = update.getBirth();
+        this.name = update.getName();
+        this.cellphone = update.getCellphone();
+        this.email = update.getEmail();
+        this.gender = Gender.of(update.getGender());
     }
 
 }
