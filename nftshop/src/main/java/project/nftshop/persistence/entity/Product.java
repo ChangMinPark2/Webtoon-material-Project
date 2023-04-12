@@ -3,6 +3,7 @@ package project.nftshop.persistence.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import project.nftshop.persistence.BaseEntity;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "tbl_product")
 @Entity
 @AttributeOverride(
