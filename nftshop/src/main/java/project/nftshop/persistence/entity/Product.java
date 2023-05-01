@@ -44,4 +44,13 @@ public class Product extends BaseEntity {
         this.price = price;
         this.quantitySale = quantitySale;
     }
+
+    /**
+     * createOrder -> 판매수량 증가
+     * 랭킹을 위해 필요
+     * */
+    public void incrementQuantitySale(){
+        int newQuantity = this.getQuantitySale() + 1;
+        this.quantitySale = newQuantity;
+    }
 }

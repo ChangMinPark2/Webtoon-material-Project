@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.nftshop.persistence.BaseEntity;
 import project.nftshop.service.model.PaymentType;
+import project.nftshop.service.model.request.OrderReqDtos;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -47,4 +49,18 @@ public class Order extends BaseEntity {
         this.users = users;
         this.products = products;
     }
+
+    public static Order toOrderCreate(OrderReqDtos.CREATE create,
+                           User user,
+                           LocalDate paymentDate,
+                           Product product){
+
+        return Order.builder()
+                .paymentTypes(PaymentType.of(create.getPaymentType()))
+                .paymentDate(paymentDate)
+                .products(product)
+                .users(user)
+                .build();
+    }
+
 }
