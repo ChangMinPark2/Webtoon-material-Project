@@ -9,6 +9,8 @@ import project.nftshop.service.model.request.OrderReqDtos;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -33,34 +35,30 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User users;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product products;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "product_id")
+//    private Product products;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "order"
+    )
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
     public Order(PaymentType paymentTypes,
                  int totalPrice,
                  LocalDate paymentDate,
                  User users,
-                 Product products) {
+                 List<OrderProduct> orderProducts) {
         this.paymentTypes = paymentTypes;
         this.totalPrice = totalPrice;
         this.paymentDate = paymentDate;
         this.users = users;
-        this.products = products;
+        this.orderProducts = orderProducts;
     }
 
-    public static Order toOrderCreate(OrderReqDtos.CREATE create,
-                           User user,
-                           LocalDate paymentDate,
-                           Product product){
-
-        return Order.builder()
-                .paymentTypes(PaymentType.of(create.getPaymentType()))
-                .paymentDate(paymentDate)
-                .products(product)
-                .users(user)
-                .build();
+    public void updateOrderProducts(List<OrderProduct> orderProducts){
+        this.orderProducts = orderProducts;
     }
-
 }

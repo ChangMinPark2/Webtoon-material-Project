@@ -40,6 +40,7 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Builder
@@ -59,28 +60,31 @@ public class User extends BaseEntity {
         this.gender = gender;
     }
 
-    public static User toUserCreate(UserReqDtos.CREATE create){
-        return User.builder()
-                .identity(create.getIdentity())
-                .password(create.getPassword())
-                .birth(create.getBirth())
-                .name(create.getName())
-                .cellphone(create.getCellphone())
-                .email(create.getEmail())
-                .gender(Gender.of(create.getGender()))
-                .build();
-    }
-
-    public static UserResDtos.READ readToEntity(User user){
-        return UserResDtos.READ.builder()
-                .identity(user.getIdentity())
-                .birth(user.getBirth())
-                .name(user.getName())
-                .cellphone(user.getCellphone())
-                .email(user.getEmail())
-                .gender(user.getGender())
-                .build();
-    }
+    /**
+     * Mapper 사용
+     * */
+//    public static User toUserCreate(UserReqDtos.CREATE create){
+//        return User.builder()
+//                .identity(create.getIdentity())
+//                .password(create.getPassword())
+//                .birth(create.getBirth())
+//                .name(create.getName())
+//                .cellphone(create.getCellphone())
+//                .email(create.getEmail())
+//                .gender(Gender.of(create.getGender()))
+//                .build();
+//    }
+//
+//    public static UserResDtos.READ readToEntity(User user){
+//        return UserResDtos.READ.builder()
+//                .identity(user.getIdentity())
+//                .birth(user.getBirth())
+//                .name(user.getName())
+//                .cellphone(user.getCellphone())
+//                .email(user.getEmail())
+//                .gender(user.getGender())
+//                .build();
+//    }
 
     public void updatePassword(UserReqDtos.PASSWORDUPDATE passwordUpdate){
         this.password = passwordUpdate.getNewPassword();

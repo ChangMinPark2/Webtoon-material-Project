@@ -7,6 +7,7 @@ import project.nftshop.infra.error.exception.*;
 import project.nftshop.persistence.entity.User;
 import project.nftshop.persistence.repository.UserRepository;
 import project.nftshop.infra.error.model.ResponseFormat;
+import project.nftshop.service.model.mapper.UserMapper;
 import project.nftshop.service.model.request.*;
 import project.nftshop.service.model.response.UserResDtos;
 
@@ -16,6 +17,8 @@ import project.nftshop.service.model.response.UserResDtos;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    private final UserMapper userMapper;
 
     /**
      * create user service
@@ -28,9 +31,9 @@ public class UserService {
         checkCellPhone(create.getCellphone());
         checkPassword(create.getPassword(), create.getCheckPassword());
 
-        final User userBuild = User.toUserCreate(create);
+        final User user = userMapper.toUserEntity(create);
 
-        userRepository.save(userBuild);
+        userRepository.save(user);
     }
 
     /**
@@ -52,7 +55,7 @@ public class UserService {
         final User user = userRepository.findByIdentity(identity)
                 .orElseThrow(() -> new UserNotFoundException());
 
-        return user.readToEntity(user);
+        return userMapper.toReadDto(user);
     }
 
     /**

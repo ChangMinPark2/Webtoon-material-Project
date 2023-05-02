@@ -27,6 +27,6 @@ public class OrderReqDtos {
         private String paymentType;
 
         @NotBlank
-        private String productName;
+        private Set<String> productsName;
     }
 }
