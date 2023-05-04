@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 public class UserReqDtos {
 
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
-    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
+    @AllArgsConstructor
     @Builder
     public static class CREATE{
 

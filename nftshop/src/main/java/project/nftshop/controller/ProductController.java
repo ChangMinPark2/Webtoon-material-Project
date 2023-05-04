@@ -10,6 +10,7 @@ import project.nftshop.service.service.ProductService;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
+@CrossOrigin(origins = "http://localhost:63342")
 public class ProductController {
 
     private final ProductService productService;

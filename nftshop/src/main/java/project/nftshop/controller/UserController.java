@@ -1,6 +1,7 @@
 package project.nftshop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.nftshop.infra.error.model.ResponseFormat;
 import project.nftshop.service.model.request.*;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
+@CrossOrigin(origins = "http://localhost:63342")
 public class UserController {
 
     private final UserService userService;

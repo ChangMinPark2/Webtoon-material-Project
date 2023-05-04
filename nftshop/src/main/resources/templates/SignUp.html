@@ -11,10 +11,6 @@
     <!-- 이전 페이지로 이동 -->
     <button class="x_button">X</button>
     <h1>Sign Up</h1>
-    <div class="member_check">
-        <span>Already a member?</span>
-        <a href="./SignIn.html">Log in</a>
-    </div>
     <div class="information">
         <div class="field">
             <label for="identity">Id</label>
@@ -25,37 +21,73 @@
             <input type="password" id="password" required>
         </div>
         <div class="field">
+            <label for="checkPassword">checkPassword</label>
+            <input type="password" id="checkPassword" required>
+        </div>
+        <div class="field">
             <label for="name">Name</label>
             <input type="text" id="name" required>
         </div>
         <div class="field">
-            <div class="Gender">
-                <label for="male">Gender</label>
-                <div class="gender_radio">
-                    <input type="radio" name="gender" value="male" id="male" required>
-                    <label for="male">male</label>
-                    <input type="radio" name="gender" value="female" id="female" required>
-                    <label for="female">female</label>
-                </div>
-            </div>
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" required>
         </div>
-        <hr>
         <div class="field">
             <label for="cellphone">Tel</label>
-            <input type="tel" id="cellphone" required>
+            <input type="text" id="cellphone" required>
         </div>
         <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" required>
+            <input type="text" id="email" required>
         </div>
         <div class="field">
             <label for="birth">Birth</label>
-            <input type="date" id="birth" required>
+            <input type="text" id="birth" required>
         </div>
-    </div>
-    <div>
-        <button class="signup_button">Sign up</button>
+        <button onclick="create()">Sign up</button>
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function create() {
+        const identity = document.getElementById("identity");
+        const password = document.getElementById("password");
+        const checkPassword = document.getElementById("checkPassword");
+        const name = document.getElementById("name");
+        const gender = document.getElementById("gender");
+        const cellphone = document.getElementById("cellphone");
+        const email = document.getElementById("email");
+        const birth = document.getElementById("birth");
+        axios({
+            url: 'http://localhost:8080/api/v1/users',
+            method: 'post',
+            withCredentials: false,
+            data: {
+                identity: identity.value,
+                password: password.value,
+                checkPassword: checkPassword.value,
+                name: name.value,
+                gender: gender.value,
+                cellphone: cellphone.value,
+                email: email.value,
+                birth: birth.value
+            }
+        }).then(
+            function singUp(response){
+                const jsonData = response.data;
+                if (jsonData.result) {
+                    alert("회원가입에 성공하셨습니다.");
+                    location.href = "../templates/MainSignIn.html";
+                } else {
+                    alert(jsonData.message)
+                }
+            }
+        ).catch(
+            function (error){
+                alert("오류발생 : " * error)
+            }
+        )
+    }
+</script>
 </html>
