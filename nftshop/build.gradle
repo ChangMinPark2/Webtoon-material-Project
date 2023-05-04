@@ -41,7 +41,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	//DB
-	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.h2database:h2:1.3.175'
 }
 
 tasks.named('test') {

@@ -41,6 +41,7 @@ public class Order extends BaseEntity {
 
     @OneToMany(
             fetch = FetchType.LAZY,
+            cascade = {CascadeType.REMOVE},
             mappedBy = "order"
     )
     private List<OrderProduct> orderProducts = new ArrayList<>();
@@ -60,5 +61,9 @@ public class Order extends BaseEntity {
 
     public void updateOrderProducts(List<OrderProduct> orderProducts){
         this.orderProducts = orderProducts;
+    }
+
+    public void updateTotalPrice(int totalPrice){
+        this.totalPrice = totalPrice;
     }
 }

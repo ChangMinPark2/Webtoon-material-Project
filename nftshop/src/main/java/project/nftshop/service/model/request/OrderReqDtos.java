@@ -3,8 +3,8 @@ package project.nftshop.service.model.request;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.List;
 import java.util.Set;
 
 public class OrderReqDtos {
@@ -23,10 +23,10 @@ public class OrderReqDtos {
         @Size(min = 5, max = 15, message = "비밀번호는 5~15자를 입력해주세요.")
         private String password;
 
-        @NotBlank
+        @NotBlank(message = "need a petType")
         private String paymentType;
 
-        @NotBlank
+        @NotEmpty(message = "need a productName")
         private Set<String> productsName;
     }
 }

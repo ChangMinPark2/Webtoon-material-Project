@@ -1,37 +1,21 @@
 package project.nftshop.persistence.repository;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.nftshop.persistence.entity.Product;
 
-import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Repository
-@RequiredArgsConstructor
-public class ProductRepository {
-    private final EntityManager em;
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    public void save(Product product){
-        if(product.getId() == null){
-            em.persist(product);
-        } else {
-            em.merge(product);
-        }
-    }
+    List<Product> findAllByProductsNamesIn(@Param("productsNames") Set<String> productsNames);
 
-    public void delete(Long id){
-        em.createQuery("delete from Product p where p.id = ?1", Product.class)
-                .setParameter(1, id);
-    }
+    Optional<Product> findByProductsNames(String ProductsNames);
 
-    public Product findOne(Long id){
-        return em.find(Product.class, id);
-    }
-
-    public List<Product> findAll(){
-        return em.createQuery("select p from Product p", Product.class)
-                .getResultList();
-    }
-
+    Boolean existsByProductsNames(String ProductsNames);
 }

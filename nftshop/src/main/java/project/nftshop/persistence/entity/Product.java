@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import project.nftshop.persistence.BaseEntity;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import project.nftshop.service.model.request.ProductReqDtos;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -23,7 +24,7 @@ import javax.persistence.Table;
 public class Product extends BaseEntity {
 
     @Column(name = "product_name")
-    private String name;
+    private String productsNames;
 
     @Column(name = "description")
     private String description;
@@ -34,12 +35,19 @@ public class Product extends BaseEntity {
     @Column(name = "quantity_sale")
     private int quantitySale;
 
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.REMOVE},
+            mappedBy = "product"
+    )
+    private List<OrderProduct> orderProducts = new ArrayList<>();
+
     @Builder
-    public Product(String name,
+    public Product(String productsNames,
                    String description,
                    int price,
                    int quantitySale) {
-        this.name = name;
+        this.productsNames = productsNames;
         this.description = description;
         this.price = price;
         this.quantitySale = quantitySale;
@@ -52,5 +60,11 @@ public class Product extends BaseEntity {
     public void incrementQuantitySale(){
         int newQuantity = this.getQuantitySale() + 1;
         this.quantitySale = newQuantity;
+    }
+
+    public void updateProduct(ProductReqDtos.UPDATE update){
+        this.productsNames = update.getProductsNames();
+        this.description = update.getDescription();
+        this.price = update.getPrice();
     }
 }

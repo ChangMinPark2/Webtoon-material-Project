@@ -5,11 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.nftshop.infra.error.exception.*;
 import project.nftshop.persistence.entity.User;
-import project.nftshop.persistence.repository.UserRepository;
+
 import project.nftshop.infra.error.model.ResponseFormat;
+import project.nftshop.persistence.repository.UserRepository;
 import project.nftshop.service.model.mapper.UserMapper;
 import project.nftshop.service.model.request.*;
 import project.nftshop.service.model.response.UserResDtos;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

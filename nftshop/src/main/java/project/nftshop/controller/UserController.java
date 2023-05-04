@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final UserService userService;
@@ -22,8 +22,9 @@ public class UserController {
     }
 
     @PostMapping("/logIn")
-    public ResponseFormat signIn(@RequestBody @Valid UserReqDtos.SIGNIN signin){
-        userService.signIn(signin);
+    public ResponseFormat signIn(@RequestBody @Valid UserReqDtos.SIGNIN signIn){
+
+        userService.signIn(signIn);
         return ResponseFormat.ok("로그인 성공");
     }
 

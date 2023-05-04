@@ -16,6 +16,9 @@ public enum ErrorCode {
     WRONG_CHECK_PASSWORD(400, "비밀번호와 확인 비밀번호가 다릅니다."),
     WRONG_PASSWORD(400, "비밀번호가 틀렸습니다."),
     DUPLICATED_CELLPHONE(400, "중복된 전화번호 입니다."),
+    DUPLICATED_PRODUCT_NAME(400, "중복된 상품 이름 입니다."),
+
+
 
     NOT_FOUND(400, "not found");
 
