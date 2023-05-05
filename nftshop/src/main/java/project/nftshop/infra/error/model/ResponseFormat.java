@@ -3,14 +3,17 @@ package project.nftshop.infra.error.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+import java.util.Optional;
 
 @Getter
 @AllArgsConstructor
 @Builder
 public class ResponseFormat <T>{
-    //result => true : 응답 성공 , false : 응답 실패
     private boolean result;
 
+    //제네릭 : 컴파일을 할 때 미리 데이터 타입을 미리 지정하는 것.
     //data : 성공 시, 전달할 데이터
     private T data;
 
@@ -26,16 +29,17 @@ public class ResponseFormat <T>{
         return ResponseFormat.builder()
                 .result(true)
                 .data(null)
-                .message(ErrorCode.SUCCESS_NULL.getMessage())
-                .status(ErrorCode.SUCCESS_NULL.getStatus())
+                .message(ErrorCodeType.SUCCESS_NULL.getMessage())
+                .status(ErrorCodeType.SUCCESS_NULL.getStatus())
                 .build();
     }
+
     public static <T> ResponseFormat ok(T data){
         return ResponseFormat.builder()
                 .result(true)
                 .data(data)
-                .message(ErrorCode.SUCCESS_VALUE.getMessage())
-                .status(ErrorCode.SUCCESS_VALUE.getStatus())
+                .message(ErrorCodeType.SUCCESS_VALUE.getMessage())
+                .status(ErrorCodeType.SUCCESS_VALUE.getStatus())
                 .build();
     }
 
@@ -44,7 +48,7 @@ public class ResponseFormat <T>{
                 .result(true)
                 .data(null)
                 .message(message)
-                .status(ErrorCode.SUCCESS_VALUE.getStatus())
+                .status(ErrorCodeType.SUCCESS_VALUE.getStatus())
                 .build();
     }
 
@@ -52,8 +56,9 @@ public class ResponseFormat <T>{
         return ResponseFormat.builder()
                 .result(false)
                 .data(null)
-                .message(ErrorCode.FAIL_NULL.getMessage())
-                .status(ErrorCode.FAIL_NULL.getStatus())
+                .message(ErrorCodeType.FAIL_NULL.getMessage())
+                .status(ErrorCodeType.FAIL_NULL.getStatus())
                 .build();
     }
+
 }

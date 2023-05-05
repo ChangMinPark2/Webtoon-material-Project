@@ -50,7 +50,7 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException());
 
         checkPasswordMatch(user.getPassword(), signIn.getPassword());
-        ResponseFormat.ok(user);
+
     }
 
     public UserResDtos.READ readUser(String identity){

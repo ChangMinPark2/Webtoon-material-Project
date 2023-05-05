@@ -1,14 +1,14 @@
 package project.nftshop.infra.error.exception;
 
 import lombok.Getter;
-import project.nftshop.infra.error.model.ErrorCode;
+import project.nftshop.infra.error.model.ErrorCodeType;
 
 @Getter
 public class BusinessException extends RuntimeException {
-    private ErrorCode errorCode;
+    private ErrorCodeType errorCodeType;
 
-    public BusinessException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.errorCode = errorCode;
+    public BusinessException(ErrorCodeType errorCodeType) {
+        super(errorCodeType.getMessage());
+        this.errorCodeType = errorCodeType;
     }
 }

@@ -41,7 +41,7 @@ public class ProductService {
     @Transactional
     public void updateProduct(ProductReqDtos.UPDATE update){
 
-        Product product = productRepository.findById(update.getProductId())
+        Product product = productRepository.findByProductsNames(update.getProductsNames())
                         .orElseThrow(() -> new NotFoundException());
 
         checkProductNamesMatch(product.getProductsNames(), update.getProductsNames());

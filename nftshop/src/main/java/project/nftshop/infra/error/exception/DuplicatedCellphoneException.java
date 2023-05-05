@@ -1,7 +1,7 @@
 package project.nftshop.infra.error.exception;
 
-import project.nftshop.infra.error.model.ErrorCode;
+import project.nftshop.infra.error.model.ErrorCodeType;
 
 public class DuplicatedCellphoneException extends BusinessException{
-    public DuplicatedCellphoneException(){super(ErrorCode.DUPLICATED_CELLPHONE);}
+    public DuplicatedCellphoneException(){super(ErrorCodeType.DUPLICATED_CELLPHONE);}
 }

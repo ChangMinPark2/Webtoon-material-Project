@@ -3,6 +3,7 @@ package project.nftshop.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import project.nftshop.infra.error.model.ErrorCodeType;
 import project.nftshop.infra.error.model.ResponseFormat;
 import project.nftshop.service.model.request.*;
 import project.nftshop.service.model.response.UserResDtos;
@@ -18,16 +19,16 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseFormat createUser(@RequestBody @Valid UserReqDtos.CREATE create){
+    public ResponseFormat<Void> createUser(@RequestBody @Valid UserReqDtos.CREATE create){
         userService.createUser(create);
         return ResponseFormat.ok();
     }
 
     @PostMapping("/logIn")
-    public ResponseFormat signIn(@RequestBody @Valid UserReqDtos.SIGNIN signIn){
+    public ResponseFormat<Void> signIn(@RequestBody @Valid UserReqDtos.SIGNIN signIn){
 
         userService.signIn(signIn);
-        return ResponseFormat.ok("로그인 성공");
+        return ResponseFormat.ok();
     }
 
     @GetMapping("/{identity}")

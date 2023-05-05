@@ -23,8 +23,6 @@ public class ProductReqDtos {
     @Builder
     public static class UPDATE{
 
-        private Long productId;
-
         private String productsNames;
 
         private String description;
