@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
 public class UserController {
 
     private final UserService userService;
@@ -31,8 +31,8 @@ public class UserController {
         return ResponseFormat.ok();
     }
 
-    @GetMapping("/{identity}")
-    public ResponseFormat<UserResDtos.READ> readUser(@PathVariable(name = "identity") String identity){
+    @GetMapping("/myPage")
+    public ResponseFormat<UserResDtos.READ> readUser(@RequestParam (name = "identity") String identity){
         return ResponseFormat.ok(userService.readUser(identity));
     }
 

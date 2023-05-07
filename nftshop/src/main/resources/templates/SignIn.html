@@ -36,31 +36,30 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function logIn() {
-        const identity = document.getElementById("identity");
-        const password = document.getElementById("password");
+        const identity = document.getElementById("identity").value;
+        const password = document.getElementById("password").value;
+
         axios({
             url: 'http://localhost:8080/api/v1/users/logIn',
             method: 'post',
-            withCredentials: false,
+            withCredentials: true, // 쿠키 전달을 위해 withCredentials를 true로 설정
             data: {
-                identity: identity.value,
-                password: password.value,
+                identity: identity,
+                password: password,
             }
-        }).then(
-            function singIn(response){
-                const jsonData = response.data;
-                if (jsonData.result) {
-                    alert("로그인에 성공하셨습니다.");
-                    location.href = "../templates/MainSignIn.html";
-                } else {
-                    alert(jsonData.message)
-                }
+        }).then(function(response) {
+            const jsonData = response.data;
+            if (jsonData.result) {
+                // 로그인 성공 시 쿠키에 'identity' 값을 저장
+                document.cookie = `identity=${identity}`;
+                alert("로그인에 성공하셨습니다.");
+                location.href = "../templates/MainSignIn.html";
+            } else {
+                alert(jsonData.message);
             }
-        ).catch(
-            function (error){
-                alert("오류발생 : " * error)
-            }
-        )
+        }).catch(function(error) {
+            alert("오류발생 : " + error);
+        });
     }
 </script>
 </html>

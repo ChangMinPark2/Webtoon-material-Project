@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/orders")
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
 public class OrderController {
 
     private final OrderService orderService;

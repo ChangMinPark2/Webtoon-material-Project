@@ -22,5 +22,6 @@ public class UserResDtos {
         private String email;
 
         private Gender gender;
+
     }
 }
