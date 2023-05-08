@@ -2,24 +2,21 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>capstone</title>
+    <script src="https://kit.fontawesome.com/88f0a2c689.js"
+            crossorigin="anonymous"></script>
+    <script src="main2.js" defer></script>
 
-    <script>
-    $(document).ready(function(){
-        $("#spreadBtn02").click(function(){
-            if($("#hiddenList01").is(":visible")){
-                $("#hiddenList01").slideUp();
-            }else{
-                $("#hiddenList01").slideDown();
-            }
-        });
-    });
-
-    </script>
+    <meta charset="UTF-8">
+    <title>회원 정보 수정/조회</title>
+    <meta charset="utf-8">
     <title>Document</title>
     <style>
         body {
@@ -95,40 +92,44 @@
         }
 
         .navbar {
-            display: block;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             background-color: white;
-            padding: 30px 30px;
-            margin: -30px;
+            padding: 8px 12px;
         }
-
-        .navbar__icons{
-            color: white;
-            padding: 20px;
-            font-size: 20px;
-            width: 100%;
-            margin: 0 100px auto;
-            text-align: right;
-            position: relative;
-            top: -100px;
-            right: 300px;
-        }
-
-        .navbar__menu{
-            width: 200px;
-            margin: 0 auto;
-            display: flex;
-            list-style: none;
-            padding-left: 0;
-        }
-
-
-
     </style>
 </head>
 <body>
+<nav class="navbar">
+    <div class="navbar__logo">
+        <i class="fa-solid fa-book-open"></i>
+        <a href="./MainSignIn.html">WMSS</a>  <!--아이콘 클릭했을 때 홈 화면으로 넘어가게 해주는 부분-->
+    </div>
+
+    <ul class="navbar__menu">
+        <li><a href="">shop</a></li>
+        <li><a href="">about</a></li>
+        <li><a href="">contact</a></li>
+        <li><a href="">product_rgstr</a></li>
+    </ul>
+
+    <ui class="navbar__icons">
+        <li><i class="fa-brands fa-kickstarter">Cart</i></li>
+        <li><a href="">MyPage</a></li>
+        <li><a href="">LogOut</a></li>
+    </ui>
+
+    <a href="#" class="navbar__toogleBtn">
+        <i class="fa-solid fa-bars"></i>
+    </a>
+</nav>
+<div class="add_product">
+    <h1 class="test1">
+        ADD product
+    </h1>
+</div>
 <header>
-    //메인 페이지의 헤더 부분
 </header>
 <div class="items-container">
     <aside class="side-nav">
@@ -203,4 +204,19 @@
         </section>
     </div>
 </div>
+</body>
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#spreadBtn02").click(function(){
+            if($("#hiddenList01").is(":visible")){
+                $("#hiddenList01").slideUp();
+            }else{
+                $("#hiddenList01").slideDown();
+            }
+        });
+    });
+
+</script>
 </html>

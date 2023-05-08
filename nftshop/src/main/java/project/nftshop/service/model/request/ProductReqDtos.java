@@ -23,7 +23,7 @@ public class ProductReqDtos {
     @Builder
     public static class UPDATE{
 
-        private String productsNames;
+        private String productsNames; //
 
         private String description;
 
@@ -35,7 +35,6 @@ public class ProductReqDtos {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     @Builder
     public static class DELETE{
-
         private String productsNames;
     }
 }

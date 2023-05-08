@@ -9,7 +9,7 @@
 <body>
 <div class="content">
     <!-- 이전 페이지로 이동 -->
-    <button class="x_button">X</button>
+    <button class="x_button" onclick="redirectToMainSignIn()">X</button>
     <h1>Sign Up</h1>
     <div class="information">
         <div class="field">
@@ -29,10 +29,6 @@
             <input type="text" id="name" required>
         </div>
         <div class="field">
-            <label for="gender">Gender</label>
-            <input type="text" id="gender" required>
-        </div>
-        <div class="field">
             <label for="cellphone">Tel</label>
             <input type="text" id="cellphone" required>
         </div>
@@ -44,6 +40,13 @@
             <label for="birth">Birth</label>
             <input type="text" id="birth" required>
         </div>
+        <select id="gender"
+                class="form-select"
+                style="margin-bottom: 10px">
+            <option value="" selected disabled hidden>성별</option>
+            <option value="MALE">남자</option>
+            <option value="FEMALE">여자</option>
+        </select>
         <button onclick="create()">Sign up</button>
     </div>
 </div>
@@ -88,6 +91,9 @@
                 alert("오류발생 : " * error)
             }
         )
+    }
+    function redirectToMainSignIn() {
+        location.href =  "../templates/Main.html";
     }
 </script>
 </html>
