@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WMSS</title>
+  <script src="https://kit.fontawesome.com/88f0a2c689.js" crossorigin="anonymous"></script>
+  <style>
+    body{
+      margin: 0;
+      font-family:wfont_f20312_51504daf241248068326c026a1945754, wf_51504daf241249068326c026a, orig_futura_it_book;
+    }
+    a{
+      text-decoration: none;
+      color: #A16B54;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 8px 12px;
+    }
+    .navbar__logo{
+      font-size: 30px;
+      color: #E4C6B0;
+    }
+
+    .navbar__logo i {
+      color: #d49466;
+    }
+
+    .navbar__menu{
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      font-size: 25px;
+      align-items: center;
+    }
+
+    .navbar__menu li{
+      padding : 8px 12px;
+    }
+    .navbar__menu li:hover{
+      background-color: #d49466;
+      border-radius: 4px;
+    }
+    .navbar__icons{
+      list-style: none;
+      color: #d49466;
+      display: flex;
+    }
+
+    .navbar__icons li{
+      padding: 8px 12px;
+    }
+
+    .navbar__toogleBtn{
+      display: none;
+      position: absolute;
+      right: 32px;
+      font-size: 24px;
+      color: #d49466;
+    }
+    .content{
+      display: flex;
+      justify-content: center;
+    }
+    .order_form{
+      display: flex;
+      flex-direction: row;
+      width: 1000px;
+      position: absolute;
+
+    }
+    .order_lists{
+      width: 550px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .order_list div{
+      float: left;
+    }
+    .order_bill{
+      width: 450px;
+    }
+    div>img{
+      width: 100px;
+      height: 150px;
+    }
+    .product_name{
+      margin-left: 30px;
+      width: 250px;
+    }
+    .product_price{
+      margin-left: 50px;
+      width: 100px;
+    }
+    .Total_Price{
+      display: flex;
+      justify-content: space-between;
+    }
+    .Total{
+      width: 300px;
+      font-size: 20px;
+    }
+    .totalprice{
+      font-size: 20px;
+    }
+    .refund_info{
+      width: 450px;
+    }
+    div>button{
+      color: white;
+      width: 100%;
+      height: 50px;
+      background-color: #d49466;
+      border-style: solid;
+      border: 0;
+      margin-top: 10px;
+    }
+    label{
+      font-size: 14px;
+    }
+    .checkout{
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar__logo">
+    <i class="fa-solid fa-book-open"></i>
+    <a href="./Main.html">WMSS</a>  <!--아이콘 클릭했을 때 홈 화면으로 넘어가게 해주는 부분-->
+  </div>
+  <div class="menu">
+    <ul class="navbar__menu">
+      <li><a href="">shop</a></li>
+      <li><a href="">about</a></li>
+      <li><a href="">contact</a></li>
+      <li><a href="">product_rgstr</a></li>
+    </ul>
+  </div>
+  <ui class="navbar__icons">
+    <li><a href="">SignUp</a></li>
+    <li><a href="">SignIn</a></li>
+  </ui>
+
+  <a href="#" class="navbar__toogleBtn">
+    <i class="fa-solid fa-bars"></i>
+  </a>
+</nav>
+<div class="content">
+  <div class="order_form">
+    <div class="order_lists">
+      <h2>Order List</h2>
+      <div class="order_list">
+        <div><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_400,h_600,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="주문 제품 이미지1"></div>
+        <div class="product_name">pouch bag | adventure collection | tartan map green</div>
+        <div class="product_price">€19.95</div>
+      </div>
+      <div class="order_list">
+        <div><img src="https://static.wixstatic.com/media/f20312_0a64ef5bf3cd498abaa629ce074027d0~mv2.jpg/v1/fill/w_400,h_600,al_c,q_85,usm_0.66_1.00_0.01/f20312_0a64ef5bf3cd498abaa629ce074027d0~mv2.webp" alt="주문 제품 이미지2"></div>
+        <div class="product_name">backpack large | meet me in the meadows | moonrise pink</div>
+        <div class="product_price">€64.95</div>
+      </div>
+    </div>
+    <div class="order_bill">
+      <h2>Order Bill</h2>
+      <div class="Total_Price">
+        <div class="Total">Total</div>
+        <div class="totalprice">€19.95</div>
+      </div>
+      <div class="checkout">
+        <div class="refund_info">
+          <input type="checkbox" name="refund_check" id="refund_check" required>
+          <label for="refund_check">웹툰 소재 특성상 구매 후에는 환불이 불가합니다. 이를 확인하고 동의합니다.</label>
+        </div>
+        <button>결제하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
