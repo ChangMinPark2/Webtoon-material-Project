@@ -81,24 +81,23 @@
       width: 550px;
       display: flex;
       flex-direction: column;
-    }
 
+    }
+    .order_list {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
     .order_list div{
       float: left;
     }
     .order_bill{
       width: 450px;
-    }
-    div>img{
-      width: 100px;
-      height: 150px;
-    }
+     }
     .product_name{
-      margin-left: 30px;
       width: 250px;
     }
     .product_price{
-      margin-left: 50px;
       width: 100px;
     }
     .Total_Price{
@@ -109,13 +108,13 @@
       width: 300px;
       font-size: 20px;
     }
-    .totalprice{
+    .totalPrice{
       font-size: 20px;
     }
     .refund_info{
       width: 450px;
     }
-    div>button{
+    .checkout_btn{
       color: white;
       width: 100%;
       height: 50px;
@@ -124,11 +123,47 @@
       border: 0;
       margin-top: 10px;
     }
+    .checkout_btn:hover {
+    background-color: #d4864e;
+    }
     label{
       font-size: 14px;
     }
     .checkout{
-      margin-top: 50px;
+      margin-top: 20px;
+    }
+    .payment {
+        margin: 30px 0px 30px 0px ;
+    }
+    .form_radio{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+    }
+    .radio_btn {
+        width: 47%;
+        height : 45px;
+        border: 1px solid #EAE7E7;
+    }
+    .radio_btn input[type=radio] {
+        display: none;
+    }
+    .radio_btn label {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        height: -webkit-fill-available;
+        line-height: 45px;
+    }
+    .radio_btn input[type=radio]:checked + label {
+        background: #184DA0;
+        color: #fff;
+    }
+    .paymentDate{
+        margin-top: 15px;
+    }
+    .radio_btn:hover {
+    background-color: #e3e2e1;
     }
   </style>
 </head>
@@ -159,29 +194,44 @@
   <div class="order_form">
     <div class="order_lists">
       <h2>Order List</h2>
+      <hr align="left" size="1px" width="90%" style="color:black; margin-top:0px; margin-bottom:20px" noshade>
       <div class="order_list">
-        <div><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_400,h_600,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="주문 제품 이미지1"></div>
         <div class="product_name">pouch bag | adventure collection | tartan map green</div>
         <div class="product_price">€19.95</div>
       </div>
       <div class="order_list">
-        <div><img src="https://static.wixstatic.com/media/f20312_0a64ef5bf3cd498abaa629ce074027d0~mv2.jpg/v1/fill/w_400,h_600,al_c,q_85,usm_0.66_1.00_0.01/f20312_0a64ef5bf3cd498abaa629ce074027d0~mv2.webp" alt="주문 제품 이미지2"></div>
         <div class="product_name">backpack large | meet me in the meadows | moonrise pink</div>
         <div class="product_price">€64.95</div>
       </div>
     </div>
     <div class="order_bill">
       <h2>Order Bill</h2>
+      <hr size="1px" width="100%" style="color:black; margin-bottom:20px;" noshade>
       <div class="Total_Price">
         <div class="Total">Total</div>
-        <div class="totalprice">€19.95</div>
+        <div class="totalPrice">€19.95</div>
       </div>
+      <div class="paymentDate" align="right">2023.05.13</div>
+      <hr size="1px" width="100%" style="color:black; margin-top:20px;" noshade>
+      <div class="payment">
+        <div class="form_radio" >
+          <div class="radio_btn">
+            <input id="KAKAO" type="radio" name="paymentType" value="KAKAO" checked>
+            <label for="KAKAO">KAKAOPAY</label>
+          </div>
+          <div class="radio_btn">
+            <input id="CARD" type="radio" name="paymentType" value="CARD">
+            <label for="CARD">CARD</label>
+          </div>
+        </div>
+      </div>
+      <hr size="1px" width="100%" style="color:black;" noshade>
       <div class="checkout">
         <div class="refund_info">
           <input type="checkbox" name="refund_check" id="refund_check" required>
           <label for="refund_check">웹툰 소재 특성상 구매 후에는 환불이 불가합니다. 이를 확인하고 동의합니다.</label>
         </div>
-        <button>결제하기</button>
+        <button class="checkout_btn">결제하기</button>
       </div>
     </div>
   </div>
