@@ -10,6 +10,7 @@ spring:
     username: sa
     password:
 
+
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
@@ -18,3 +19,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+image:
+  upload:
+    directory: C:/Users/98qkr/OneDrive/문서/GitHub/NFT-Project/nftshop/src/main/resources/templates/productsImg/

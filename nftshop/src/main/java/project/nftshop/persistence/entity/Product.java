@@ -8,6 +8,7 @@ import project.nftshop.persistence.BaseEntity;
 import project.nftshop.service.model.request.ProductReqDtos;
 
 import javax.persistence.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class Product extends BaseEntity {
     @Column(name = "quantity_sale")
     private int quantitySale;
 
+
+
     @OneToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.REMOVE},
@@ -53,6 +56,14 @@ public class Product extends BaseEntity {
         this.quantitySale = quantitySale;
     }
 
+    public void base64Image(){
+
+    }
+
+//    public void createImage(byte[] imageData, String imageName){
+//        this.imageData = imageData;
+//        this.imageName = imageName;
+//    }
     /**
      * createOrder -> 판매수량 증가
      * 랭킹을 위해 필요

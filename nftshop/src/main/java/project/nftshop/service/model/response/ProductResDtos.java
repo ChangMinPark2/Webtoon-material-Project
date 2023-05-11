@@ -2,6 +2,8 @@ package project.nftshop.service.model.response;
 
 import lombok.*;
 
+import java.awt.image.BufferedImage;
+
 public class ProductResDtos {
 
     @Getter
@@ -15,5 +17,8 @@ public class ProductResDtos {
         private String description;
 
         private int price;
+
+        private byte[] imageBytes;
+
     }
 }
