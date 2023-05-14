@@ -175,24 +175,14 @@ label {
     margin-bottom: 8px;
     color:#d49466;
 }
-.detail_quantity {
-    display: flex;
-    flex-direction: column;
-}
-input[type="number"] {
-    width: 80px;
-    height: 40px;
-    outline-style: none;
-    border: 1px solid #c9c9c9;
-    border-radius: 0;
-
-    border-color: gray;
-    padding-left:  16px;
-}
-.add_button{
+button{
     width: 100%;
     height: 35px;
     background-color: #d49466;
     color: white;
     border: 0;
+    margin-bottom:10px
+}
+button:hover{
+    background-color: #d4864e;
 }

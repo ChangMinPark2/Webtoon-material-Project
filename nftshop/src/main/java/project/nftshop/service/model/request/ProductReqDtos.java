@@ -1,6 +1,7 @@
 package project.nftshop.service.model.request;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ProductReqDtos {
 
@@ -10,11 +11,11 @@ public class ProductReqDtos {
     @Builder
     public static class CREATE{
 
-        private String productsNames;
+        private String fileName;
 
-        private String description;
+        private String saveFileName;
 
-        private int price;
+        private String contentType;
     }
 
     @Getter

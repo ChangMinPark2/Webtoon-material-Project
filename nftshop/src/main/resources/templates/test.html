@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style1.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <title>capstone</title>
+  <script src="https://kit.fontawesome.com/88f0a2c689.js"
+          crossorigin="anonymous"></script>
+  <script src="main2.js" defer></script>
+
+  <meta charset="UTF-8">
+  <title>회원 정보 수정/조회</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      display: block;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+    table.table {
+      margin-bottom: 20px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 8px 12px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+
+    .member-info {
+      margin-bottom: 20px;
+    }
+
+
+
+    button[type="submit"] {
+      padding: 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      width: 300px;
+      height: 50px;
+      margin-bottom: 50px;
+    }
+    .container11 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    .container11 button {
+      margin-right: 20px;
+    }
+
+
+    /* 테이블 셀 간격 조정 */
+    table.table td,
+    table.table th {
+      padding: 10px;
+    }
+
+  </style>
+</head>
+<nav class="navbar">
+  <div class="navbar__logo">
+    <i class="fa-solid fa-book-open"></i>
+    <a href="./MainSignIn.html">WMSS</a>  <!--아이콘 클릭했을 때 홈 화면으로 넘어가게 해주는 부분-->
+  </div>
+
+  <ul class="navbar__menu">
+    <li><a href="">shop</a></li>
+    <li><a href="">about</a></li>
+    <li><a href="">contact</a></li>
+    <li><a href="">product_rgstr</a></li>
+  </ul>
+
+  <ui class="navbar__icons">
+    <li><i class="fa-brands fa-kickstarter">Cart</i></li>
+    <li><a href="">MyPage</a></li>
+    <li><a href="Main.html">LogOut</a></li>
+  </ui>
+
+  <a href="#" class="navbar__toogleBtn">
+    <i class="fa-solid fa-bars"></i>
+  </a>
+</nav>
+<div class="add_product">
+  <h1 class="test1">
+    My Page
+  </h1>
+</div>
+<body>
+<div class="container">
+  <div class="member-info">
+    <h4>회원 정보</h4>
+    <table class="table table-striped table-hover">
+      <tbody>
+      <tr>
+        <th scope="row">상품명</th>
+        <td id="productsNames"></td>
+      </tr>
+      <tr>
+        <th scope="row">설명</th>
+        <td id="description"></td>
+      </tr>
+      <tr>
+        <th scope="row">가격</th>
+        <td id="price"></td>
+      </tr>
+      <tr>
+        <th scope="row">이미지</th>
+        <td id="imageContainer">
+          <img id="productImage" th:src="@{${imageUrl}}" alt="Product Image">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container11">
+  <div>
+    <button type="submit" id="editProfile">회원 정보 수정</button>
+    <button type="submit" id="editPassword">비밀번호 수정</button>
+    <button type="submit" id="delete">회원 삭제</button>
+  </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 페이지 로딩이 완료된 후에 실행할 함수
+  window.onload = function() {
+    // 기존 코드 내용
+
+    // GET 요청으로 상품 정보 조회
+    axios.get("http://localhost:8080/api/v1/products", {
+      params: {
+        productName: "test13"
+      }
+    })
+            .then(function(response) {
+              const data = response.data;
+              if (data.result) {
+                const product = data.data;
+
+                // 상품 정보 표시
+                document.getElementById("productsNames").innerText = product.productsNames;
+                document.getElementById("description").innerText = product.description;
+                document.getElementById("price").innerText = product.price;
+
+                if (product.savedImagePath) {
+                  const imageUrl = "data:image/png;base64," + base64EncodedImage; // base64EncodedImage는 이미지 파일을 Base64로 인코딩한 문자열입니다.
+                  const imageElement = document.getElementById("productImage");
+                  imageElement.src = imageUrl;
+                }
+
+              } else {
+                alert(data.message);
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+  };
+
+  // 쿠키에서 특정 이름의 값을 가져오는 함수
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    }
+    return null;
+  }
+  // 버튼 클릭 이벤트 처리
+  document.getElementById("editProfile").addEventListener("click", function() {
+    window.location.href = "UserUpdate.html";
+  });
+
+  document.getElementById("editPassword").addEventListener("click", function() {
+    window.location.href = "UserPasswordUpdate.html";
+  });
+
+  document.getElementById("delete").addEventListener("click", function() {
+    window.location.href = "UserDelete.html";
+  });
+
+</script>
+</html>

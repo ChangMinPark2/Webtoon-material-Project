@@ -32,7 +32,6 @@
         const identity = document.getElementById("identity");
         const password = document.getElementById("password");
         const cookieValue = getCookie("identity");
-        console.log("1")
         if (cookieValue !== identity.value) {
             alert("입력한 IDENTITY와 쿠키의 IDENTITY가 일치하지 않습니다.");
             console.log("2")
@@ -52,16 +51,13 @@
                 const jsonData = response.data;
                 if (jsonData.result) {
                     alert("회원이 삭제되었습니다..");
-                    console.log("3")
                     location.href = "../templates/Main.html";
                 } else {
-                    console.log("4")
                     alert(jsonData.message)
                 }
             }
         ).catch(
             function (error){
-                console.log("5")
                 alert("오류발생 : " * error)
             }
         )

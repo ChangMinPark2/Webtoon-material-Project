@@ -10,7 +10,7 @@ public enum ErrorCodeType {
 
     SUCCESS_NULL("실행이 성공했고, 응답 데이터는 없습니다.", 200),
     SUCCESS_VALUE("실행이 성공했고, 응답 데이터는 있습니다.", 400),
-    FAIL_NULL("실행실패입니다.", 400),
+    FAIL_NULL("실행에 실패했습니다.", 400),
     //user
     USER_DUPLICATE("회원 아이디가 중복 되었습니다.", 400),
     USER_NOT_FOUND("회원이 존재하지 않습니다.", 400),
@@ -21,7 +21,8 @@ public enum ErrorCodeType {
 
     RUNTIME_EXCEPTION("RUNTIME-EXCEPTION", 400),
 
-    NOT_FOUND("not found", 400);
+    NOT_FOUND("not found", 400),
+    FILE_ERROR("FILE ERROR", 400);
 
     private String message;
 
