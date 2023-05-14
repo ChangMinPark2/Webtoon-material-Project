@@ -22,6 +22,10 @@ a{
     padding: 5px;
 }
 
+.products_container {
+    display: flex;
+}
+
 
 .left {
     width: 50%;
@@ -29,6 +33,10 @@ a{
     box-sizing: border-box;
     margin-left: 20px;
 }
+.updateProductImg{
+ margin-left : 50px
+}
+
 .right {
     width: 50%;
     float: right;
@@ -98,7 +106,6 @@ a{
     padding-left: 0;
     font-size: 25px;
 }
-
 .navbar__menu li{
     padding : 8px 12px;
 }
