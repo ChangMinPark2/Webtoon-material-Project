@@ -2,6 +2,7 @@ package project.nftshop.service.model.request;
 
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
+import project.nftshop.persistence.entity.ImageFile;
 
 public class ProductReqDtos {
 
@@ -11,11 +12,14 @@ public class ProductReqDtos {
     @Builder
     public static class CREATE{
 
-        private String fileName;
+        private String productsNames; //
 
-        private String saveFileName;
+        private String description;
 
-        private String contentType;
+        private int price;
+
+//        private MultipartFile multipartFile;
+
     }
 
     @Getter

@@ -38,6 +38,10 @@ public class Product extends BaseEntity {
 
 
 
+    @OneToOne
+    @JoinColumn(name = "image_file_id")
+    private ImageFile imageFile;
+
     @OneToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.REMOVE},
@@ -49,11 +53,13 @@ public class Product extends BaseEntity {
     public Product(String productsNames,
                    String description,
                    int price,
-                   int quantitySale) {
+                   int quantitySale,
+                   ImageFile imageFile) {
         this.productsNames = productsNames;
         this.description = description;
         this.price = price;
         this.quantitySale = quantitySale;
+        this.imageFile = imageFile;
     }
 
     public void base64Image(){

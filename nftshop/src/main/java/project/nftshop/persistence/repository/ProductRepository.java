@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface    ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findAllByProductsNamesIn(@Param("productsNames") Set<String> productsNames);
 

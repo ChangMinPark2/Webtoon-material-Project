@@ -3,10 +3,7 @@ package project.nftshop.persistence.entity;
 import lombok.*;
 import project.nftshop.persistence.BaseEntity;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_image_file")
@@ -23,6 +20,9 @@ public class ImageFile extends BaseEntity {
     private String saveName;
 
     private String contentType;
+//
+//    @OneToOne(mappedBy = "imageFile")
+//    private Product product;
 
     @Builder
     public ImageFile(String fileName, String saveName, String contentType) {

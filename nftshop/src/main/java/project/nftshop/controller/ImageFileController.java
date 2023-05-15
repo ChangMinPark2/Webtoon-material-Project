@@ -18,15 +18,14 @@ public class ImageFileController {
 
     private final ImageFileService imageFileService;
 
-    @PostMapping
-    public void createImageFile(@RequestPart(name = "file") MultipartFile file) throws IOException {
+    @GetMapping
+    public ResponseEntity<?> download(@RequestParam(name = "productsName") String productsName) throws IOException {
 
-        imageFileService.hhjFileCreate(file);
-    }
-
-    @GetMapping("/{fileId}")
-    public ResponseEntity<?> download(@PathVariable(name = "fileId") Long fileId) throws IOException {
-
-        return imageFileService.hhjFileRead(fileId);
+        return imageFileService.hhjFileRead(productsName);
     }
 }
+
+
+
+
+

@@ -1,8 +1,10 @@
 package project.nftshop.service.model.response;
 
 import lombok.*;
+import org.springframework.http.ResponseEntity;
 
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
 public class ProductResDtos {
 
@@ -17,8 +19,5 @@ public class ProductResDtos {
         private String description;
 
         private int price;
-
-        private byte[] imageBytes;
-
     }
 }

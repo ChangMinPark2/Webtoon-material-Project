@@ -4,28 +4,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.UriUtils;
+import project.nftshop.infra.error.exception.NotFoundException;
 import project.nftshop.persistence.entity.ImageFile;
+import project.nftshop.persistence.entity.Product;
 import project.nftshop.persistence.repository.ImageFileRepository;
-import project.nftshop.service.model.request.FileReqDto;
-import project.nftshop.service.model.response.ImageFileResDto;
-
+import project.nftshop.persistence.repository.ProductRepository;
+import project.nftshop.service.model.mapper.ProductMapper;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +32,11 @@ public class ImageFileService {
 
     private final ImageFileRepository fileRepository;
 
+    private final ProductRepository productRepository;
+
+
     @Transactional
-    public void hhjFileCreate(MultipartFile file) throws IOException {
+    public ImageFile hhjFileCreate(MultipartFile file) throws IOException { //매개변수 MultiFile 받고
 
         String originName = file.getOriginalFilename();
 
@@ -55,11 +53,17 @@ public class ImageFileService {
                 .build();
 
         fileRepository.save(create);
+
+        return create;
     }
 
-    public ResponseEntity<?> hhjFileRead(Long fileId) throws IOException {
 
-        ImageFile imageFile = fileRepository.findById(fileId).get();
+    public ResponseEntity<?> hhjFileRead(String productsName) throws IOException {
+
+        Product product = productRepository.findByProductsNames(productsName)
+                .orElseThrow(() -> new NotFoundException());
+
+        ImageFile imageFile = product.getImageFile();
 
         String saveFile = imageFile.getSaveName();
 
