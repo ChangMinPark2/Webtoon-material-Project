@@ -83,9 +83,12 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public OrderResDtos.READ readOrderInfo(Long ownerId){
+    public OrderResDtos.READ readOrderInfo(String identity){
 
-        final Order order = orderRepository.findById(ownerId)
+//        final Order order = orderRepository.findById(ownerId)
+//                .orElseThrow(() -> new NotFoundException());
+
+        final Order order = orderRepository.findByUsersIdentity(identity)
                 .orElseThrow(() -> new NotFoundException());
 
         final List<String> productsName = getProductsNameByOrder(order);

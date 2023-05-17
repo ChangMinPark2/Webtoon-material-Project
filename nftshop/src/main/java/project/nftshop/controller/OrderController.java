@@ -23,8 +23,8 @@ public class OrderController {
         return ResponseFormat.ok();
     }
 
-    @GetMapping("/{orderId}")
-    public ResponseFormat<OrderResDtos.READ> readOrder(@PathVariable(name = "orderId") Long orderId){
-        return ResponseFormat.ok(orderService.readOrderInfo(orderId));
+    @GetMapping
+    public ResponseFormat<OrderResDtos.READ> readOrder(@RequestParam(name = "identity") String identity){
+        return ResponseFormat.ok(orderService.readOrderInfo(identity));
     }
 }
