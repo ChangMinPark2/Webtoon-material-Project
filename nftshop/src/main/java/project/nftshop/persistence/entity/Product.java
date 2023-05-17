@@ -36,40 +36,44 @@ public class Product extends BaseEntity {
     @Column(name = "quantity_sale")
     private int quantitySale;
 
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.REMOVE},
+            mappedBy = "product"
+    )
+    private List<UserProduct> userProducts = new ArrayList<>();
 
 
     @OneToOne
     @JoinColumn(name = "image_file_id")
     private ImageFile imageFile;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.REMOVE},
-            mappedBy = "product"
-    )
-    private List<OrderProduct> orderProducts = new ArrayList<>();
+//    @OneToMany(
+//            fetch = FetchType.LAZY,
+//            cascade = {CascadeType.REMOVE},
+//            mappedBy = "product"
+//    )
+//    private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
     public Product(String productsNames,
                    String description,
                    int price,
                    int quantitySale,
-                   ImageFile imageFile) {
+                   ImageFile imageFile,
+                   List<UserProduct> userProducts) {
         this.productsNames = productsNames;
         this.description = description;
         this.price = price;
         this.quantitySale = quantitySale;
         this.imageFile = imageFile;
+        this.userProducts = userProducts;
     }
 
-    public void base64Image(){
-
+    public void updateUserProduct(List<UserProduct> userProducts){
+        this.userProducts = userProducts;
     }
 
-//    public void createImage(byte[] imageData, String imageName){
-//        this.imageData = imageData;
-//        this.imageName = imageName;
-//    }
     /**
      * createOrder -> 판매수량 증가
      * 랭킹을 위해 필요

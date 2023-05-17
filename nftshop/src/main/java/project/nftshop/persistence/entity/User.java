@@ -8,6 +8,8 @@ import project.nftshop.service.model.Gender;
 import project.nftshop.service.model.request.UserReqDtos;
 import project.nftshop.service.model.response.UserResDtos;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -41,6 +43,13 @@ public class User extends BaseEntity {
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+//    @OneToMany(
+//            fetch = FetchType.LAZY,
+//            cascade = {CascadeType.REMOVE},
+//            mappedBy = "user"
+//    )
+//    private List<UserProduct> userProducts = new ArrayList<>();
 
     @Builder
     public User(String identity,

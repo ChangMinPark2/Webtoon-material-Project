@@ -30,5 +30,5 @@ public interface OrderMapper {
     @Mapping(target = "paymentDate", source = "order.paymentDate")
     @Mapping(target = "paymentType", source = "order.paymentTypes")
     @Mapping(target = "productsName", source = "productsNames")
-    OrderResDtos.READ toReadDto(Order order,List<String> productsNames);
+    OrderResDtos.READ toReadDto(Order order, List<String> productsNames);
 }

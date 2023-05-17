@@ -12,14 +12,15 @@ public class ProductReqDtos {
     @Builder
     public static class CREATE{
 
+        private String identity;
+
+        private String password;
+
         private String productsNames; //
 
         private String description;
 
         private int price;
-
-//        private MultipartFile multipartFile;
-
     }
 
     @Getter

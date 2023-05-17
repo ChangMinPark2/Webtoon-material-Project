@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import project.nftshop.persistence.entity.ImageFile;
 import project.nftshop.persistence.entity.Product;
+import project.nftshop.persistence.entity.User;
+import project.nftshop.persistence.entity.UserProduct;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {

@@ -8,14 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import project.nftshop.infra.error.exception.DuplicatedProductNameException;
 import project.nftshop.infra.error.exception.NotFoundException;
-import project.nftshop.persistence.entity.ImageFile;
-import project.nftshop.persistence.entity.Product;
+import project.nftshop.infra.error.exception.WrongPasswordException;
+import project.nftshop.persistence.entity.*;
 import project.nftshop.persistence.repository.ImageFileRepository;
 import project.nftshop.persistence.repository.ProductRepository;
+import project.nftshop.persistence.repository.UserProductRepository;
+import project.nftshop.persistence.repository.UserRepository;
 import project.nftshop.service.model.mapper.ProductMapper;
+import project.nftshop.service.model.mapper.UserProductMapper;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -33,17 +37,29 @@ public class ProductService {
 
     private final ImageFileService imageFileService;
 
+    private final UserRepository userRepository;
+
+    private final UserProductRepository userProductRepository;
+
+    private final UserProductMapper userProductMapper;
+
     @Transactional
     public void createProduct(ProductReqDtos.CREATE create, MultipartFile file) throws IOException {
-        // 이미지 파일 생성
-    //    imageFileService.hhjFileCreate(create.getMultipartFile());  //save ImageFile
-        // 이미지 파일이 저장된 후에 해당 이미지 파일을 사용하여 Product 엔티티 생성
+
+        final User user = userRepository.findByIdentity(create.getIdentity())
+                .orElseThrow(() -> new NotFoundException());
+
+        checkPasswordMatch(user.getPassword(), create.getPassword());
 
         ImageFile imageFile = imageFileService.hhjFileCreate(file);
 
         final Product product = productMapper.toProductEntity(create, imageFile);
 
         checkProductsNames(create.getProductsNames());
+
+        UserProduct userProduct = userProductMapper.toOrderProductEntity(user, product);
+
+        userProductRepository.save(userProduct);
 
         productRepository.save(product);
     }
@@ -61,6 +77,14 @@ public class ProductService {
         return readToProduct;
     }
 
+    public ProductResDtos.READ_MY_PRODUCT getMyProducts(String identity) {
+        List<String> productNames = userProductRepository.findProductNamesByUserIdentity(identity);
+        return ProductResDtos.READ_MY_PRODUCT
+                .builder()
+                .productsNames(productNames)
+                .build();
+    }
+
     @Transactional
     public void updateProduct(ProductReqDtos.UPDATE update){
 
@@ -74,7 +98,6 @@ public class ProductService {
         productRepository.save(product);
     }
 
-
     @Transactional
     public void deleteProduct(ProductReqDtos.DELETE delete){
 
@@ -84,8 +107,10 @@ public class ProductService {
         productRepository.delete(product);
     }
 
-
-
+    private void checkPasswordMatch(String originPassword, String checkPassword){
+        if(!originPassword.equals(checkPassword))
+            throw new WrongPasswordException();
+    }
 
     private void checkProductsNames(String productsNames){
         if (productRepository.existsByProductsNames(productsNames))

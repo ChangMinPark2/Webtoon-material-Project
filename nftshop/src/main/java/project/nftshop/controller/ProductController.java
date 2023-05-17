@@ -31,6 +31,11 @@ public class ProductController {
             return ResponseFormat.ok(productService.readToProductName(productName));
     }
 
+    @GetMapping("/myProduct")
+    public ResponseFormat<ProductResDtos.READ_MY_PRODUCT> readToMyProducts(@RequestParam(name = "identity") String identity){
+        return ResponseFormat.ok(productService.getMyProducts(identity));
+    }
+
     @PutMapping
     public ResponseFormat updateProduct(@RequestBody ProductReqDtos.UPDATE update){
 

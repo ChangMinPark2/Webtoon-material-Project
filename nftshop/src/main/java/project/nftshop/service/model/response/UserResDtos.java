@@ -3,6 +3,8 @@ package project.nftshop.service.model.response;
 import lombok.*;
 import project.nftshop.service.model.Gender;
 
+import java.util.List;
+
 public class UserResDtos {
 
     @Getter
@@ -22,6 +24,14 @@ public class UserResDtos {
         private String email;
 
         private Gender gender;
+    }
 
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Builder
+    public static class READ_MY_PRODUCT{
+
+        private List<String> productsNames;
     }
 }

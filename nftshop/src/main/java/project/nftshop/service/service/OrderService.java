@@ -85,9 +85,6 @@ public class OrderService {
 
     public OrderResDtos.READ readOrderInfo(String identity){
 
-//        final Order order = orderRepository.findById(ownerId)
-//                .orElseThrow(() -> new NotFoundException());
-
         final Order order = orderRepository.findByUsersIdentity(identity)
                 .orElseThrow(() -> new NotFoundException());
 
