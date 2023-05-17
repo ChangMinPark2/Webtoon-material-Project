@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("select o from Order o where o.users.identity =:identity")
-    Optional<Order> findByUsersIdentity(String identity);
+    List<Order> findByUsersIdentity(@Param("identity") String identity);
 
 }

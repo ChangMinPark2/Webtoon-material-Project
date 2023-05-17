@@ -20,10 +20,7 @@ import project.nftshop.service.model.request.OrderReqDtos;
 import project.nftshop.service.model.response.OrderResDtos;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -83,24 +80,55 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public OrderResDtos.READ readOrderInfo(String identity){
+//    public List<OrderResDtos.READ> readOrderInfo(String identity){
+//
+//        final Order order = orderRepository.findByUsersIdentity(identity)
+//                .orElseThrow(() -> new NotFoundException());
+//
+//        final List<String> productsName = getProductsNameByOrder(order);
+//
+//        return orderMapper.toReadDto(order, productsName);
+//    }
 
-        final Order order = orderRepository.findByUsersIdentity(identity)
-                .orElseThrow(() -> new NotFoundException());
+//    public List<OrderResDtos.READ> readOrderInfo(String identity){
+//
+//        List<Order> order = orderRepository.findByUsersIdentity(identity);
+//
+//       // final List<String> productsName = getProductsNameByOrder(order);
+//        List<String> productsName = getProductsNameByOrder(order.)
+//        return orderMapper.toReadDto(order, productsName);
+//    }
+//
+//    private List<String> getProductsNameByOrder(Order order){
+//
+//        return order.getOrderProducts()
+//                .stream()
+//                .map(OrderProduct::getProduct)
+//                .map(Product::getProductsNames)
+//                .collect(Collectors.toList());
+//    }
+    public List<OrderResDtos.READ> readOrderInfo(String identity) {
+        List<Order> orders = orderRepository.findByUsersIdentity(identity);
+        List<OrderResDtos.READ> result = new ArrayList<>();
 
-        final List<String> productsName = getProductsNameByOrder(order);
+        for (Order order : orders) {
+            List<String> productsNames = getProductsNameByOrder(order);
+            result.add(orderMapper.toReadDto(order, productsNames));
+        }
 
-        return orderMapper.toReadDto(order, productsName);
+        return result;
     }
 
-    private List<String> getProductsNameByOrder(Order order){
 
+    private List<String> getProductsNameByOrder(Order order){
         return order.getOrderProducts()
                 .stream()
                 .map(OrderProduct::getProduct)
                 .map(Product::getProductsNames)
                 .collect(Collectors.toList());
     }
+
+
 
     private List<OrderProduct> getOrderProduct(Set<String> productsName,
                                                       Order order){

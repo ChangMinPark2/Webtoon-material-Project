@@ -8,6 +8,7 @@ import project.nftshop.service.model.request.OrderReqDtos;
 import project.nftshop.service.model.response.OrderResDtos;
 import project.nftshop.service.service.OrderService;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseFormat<OrderResDtos.READ> readOrder(@RequestParam(name = "identity") String identity){
+    public ResponseFormat<List<OrderResDtos.READ>> readOrder(@RequestParam(name = "identity") String identity){
         return ResponseFormat.ok(orderService.readOrderInfo(identity));
     }
 }

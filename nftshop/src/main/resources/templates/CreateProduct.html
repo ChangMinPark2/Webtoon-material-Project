@@ -130,17 +130,73 @@
         <div class = "right">
             <input type="text" id="identity" name="identity" placeholder="아이디" required>
             <input type="password" id="password" name="password" placeholder="비밀번호" required>
-            <input type="text" id="p" name="product-price" placeholder="상품 가격" required>
-        <input type="text" id="product-name" name="product-name" placeholder="상품이름" required>
 
-        <input type="text" id="product-price" name="product-price" placeholder="상품 가격" required>
+        <input type="text" id="productsNames" name="product-name" placeholder="상품이름" required>
+
+        <input type="text" id="price" name="product-price" placeholder="상품 가격" required>
 
 
-        <textarea id="product-desc" name="product-desc" placeholder="상품 설명"></textarea><br><br><br>
+        <textarea id="description" name="product-desc" placeholder="상품 설명"></textarea><br><br><br>
 
-        <button type="submit" class="select_button">등록</button>
+        <button type="submit" class="select_button" onclick="logIn()">등록</button>
         </div>
     </div>
 </form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function logIn() {
+        const identity = document.getElementById("identity");
+        const password = document.getElementById("password");
+        const productsNames = document.getElementById("productsNames");
+        const price = document.getElementById("price");
+        const description = document.getElementById("description");
+        const file = document.getElementById("file");
+
+        const cookieValue = getCookie("identity");
+        if (cookieValue !== identity.value) {
+            alert("회원 정보가 일치하지 않습니다.");
+            return;
+        }
+
+        axios({
+            url: 'http://localhost:8080/api/v1/products',
+            method: 'post',
+            withCredentials: false,
+            data: {
+                identity: identity.value,
+                password: password.value,
+                productsNames: productsNames.value,
+                price: price.value,
+                description: description.value,
+                file : file.value,
+            }
+        }).then(
+            function singUp(response){
+                const jsonData = response.data;
+                if (jsonData.result) {
+                    alert("상품이 등록되었습니다.");
+                    location.href = "../templates/Main.html";
+                } else {
+                    alert(jsonData.message)
+                }
+            }
+        ).catch(
+            function (error){
+                alert("오류발생 : " * error)
+            }
+        )
+    }
+    function redirectToMainSignIn() {
+        location.href =  "../templates/Main.html";
+    }
+    function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) {
+            return parts.pop().split(";").shift();
+        }
+        return null;
+    }
+</script>
 </html>
