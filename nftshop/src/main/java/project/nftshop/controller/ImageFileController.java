@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
 public class ImageFileController {
 
     private final ImageFileService imageFileService;

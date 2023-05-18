@@ -16,7 +16,7 @@ public class ProductReqDtos {
 
         private String password;
 
-        private String productsNames; //
+        private String productsNames;
 
         private String description;
 
