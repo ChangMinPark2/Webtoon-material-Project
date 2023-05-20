@@ -14,6 +14,8 @@ import project.nftshop.persistence.entity.Product;
 import project.nftshop.persistence.repository.ImageFileRepository;
 import project.nftshop.persistence.repository.ProductRepository;
 import project.nftshop.service.model.mapper.ProductMapper;
+import project.nftshop.service.model.response.ProductResDtos;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -87,6 +89,7 @@ public class ImageFileService {
 
         return new ResponseEntity<>(resource, httpHeaders, HttpStatus.OK);
     }
+
 
     private String getFullPath(String saveName) {
 

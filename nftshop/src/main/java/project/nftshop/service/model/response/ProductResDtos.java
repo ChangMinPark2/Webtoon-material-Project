@@ -1,6 +1,9 @@
 package project.nftshop.service.model.response;
 
 import lombok.*;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.awt.image.BufferedImage;

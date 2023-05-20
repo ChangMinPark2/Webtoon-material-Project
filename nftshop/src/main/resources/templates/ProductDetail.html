@@ -43,27 +43,17 @@
         <input type="radio" name="slide" id="slide3">
         <input type="radio" name="slide" id="slide4">
         <ul id="imgholder" class="imgs">
-          <li><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="제품 상세 이미지1"></li>
-          <li><img src="https://static.wixstatic.com/media/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.webp" alt="제품 상세 이미지2"></li>
-          <li><img src="https://static.wixstatic.com/media/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_7fa08b7b33b3430ea8ea50a27560b6c3~mv2.webp" alt="제품 상세 이미지3"></li>
-          <li><img src="https://static.wixstatic.com/media/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.jpg/v1/fill/w_1000,h_1500,al_c,q_85,usm_0.66_1.00_0.01/f20312_1e8244ec30054adab5fec932f4d3aa62~mv2.webp" alt="제품 상세 이미지4"></li>
+          <li><img id="productImage" src="" alt="제품 상세 이미지1"></li>
         </ul>
         <div class="bullets">
           <label for="slide1">&nbsp;</label>
-          <label for="slide2">&nbsp;</label>
-          <label for="slide3">&nbsp;</label>
-          <label for="slide4">&nbsp;</label>
         </div>
       </div>
 
 
       <div class="information">
-        <p>A new style! A wink to the oldschool 'knapzak'. The tartan fabric is made from recycled polyester. The pouch bag closes with two drawstring at the top. The lining has an acorn pattern and is waterproof. The shoulder handle is adjustable by pulling the stopper as tight as you want. This way, you can wear it both over your shoulder as around your waist.</p>
-        <p>size - 14.5 x 8 x 21 cm <br>
-          adjustable shoulder handle <br>
-          material outside - recycled polyester & cotton canvas <br>
-          material inside - waterproof nylon</p>
-
+        <p id="description">
+        </p>
       </div>
     </div>
 
@@ -71,12 +61,11 @@
 
     <div class="content_details">
       <div class="detail">
-        <h2>pouch bag | adventure collection | tartan map green</h2>
+        <h2 id="productsNames"></h2>
       </div>
       <div class="detail">
         <div>
-          <h3 class="price">
-            €19.95
+          <h3 class="price" id="price">
           </h3>
         </div>
       </div>
@@ -85,7 +74,49 @@
     </div>
   </div>
 </div>
-
-
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  window.onload = function() {
+    axios
+            .get('http://localhost:8080/api/v1/products', {
+              params: {
+                productName: 'htmltestimage1'
+              }
+            })
+            .then(function(response) {
+              const data = response.data;
+              if (data.result) {
+                document.getElementById("productsNames").innerText = data.data.productsNames;
+                document.getElementById("description").innerText = data.data.description;
+                document.getElementById("price").innerText = data.data.price + "원";
+              } else {
+                alert(data.message);
+              }
+
+              axios
+                      .get('http://localhost:8080/api/v1/image', {
+                        params: {
+                          productsName: 'htmltestimage1'
+                        }
+                      })
+                      .then(function(response) {
+                        const data = response.data;
+                        if (data.result) {
+                          const productImageURL = 'http://localhost:8080/api/v1/image?productsName=htmltestimage1'; // 이미지 URL을 직접 지정
+                          document.getElementById("productImage").src = productImageURL;
+
+                        } else {
+                          alert(data.message);
+                        }
+                      })
+                      .catch(function(error) {
+                        console.log(error);
+                      });
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+  };
+</script>
 </html>
