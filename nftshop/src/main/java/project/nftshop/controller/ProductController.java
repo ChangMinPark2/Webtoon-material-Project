@@ -18,6 +18,9 @@ public class ProductController {
 
     private final ProductService productService;
 
+    /**
+     * 연동 성공
+     * */
     @PostMapping
     public ResponseFormat createProduct(@RequestPart("create") ProductReqDtos.CREATE create,
                                         @RequestPart("file") MultipartFile file) throws IOException {
@@ -25,6 +28,9 @@ public class ProductController {
         return ResponseFormat.ok();
     }
 
+    /**
+     * 연동 성공
+     * */
     @GetMapping
     public ResponseFormat<ProductResDtos.READ> readToProductNames(@RequestParam(name = "productName") String productName){
             return ResponseFormat.ok(productService.readToProductName(productName));

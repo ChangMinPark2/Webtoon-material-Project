@@ -17,13 +17,18 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
-
+    /**
+     * 연동 성공
+     * */
     @PostMapping
     public ResponseFormat<Void> createUser(@RequestBody @Valid UserReqDtos.CREATE create){
         userService.createUser(create);
         return ResponseFormat.ok();
     }
 
+    /**
+     * 연동 성공
+     * */
     @PostMapping("/logIn")
     public ResponseFormat<Void> signIn(@RequestBody @Valid UserReqDtos.SIGNIN signIn){
 
@@ -31,23 +36,35 @@ public class UserController {
         return ResponseFormat.ok();
     }
 
+    /**
+     * 연동 성공
+     * */
     @GetMapping("/myPage")
     public ResponseFormat<UserResDtos.READ> readUser(@RequestParam (name = "identity") String identity){
         return ResponseFormat.ok(userService.readUser(identity));
     }
 
+    /**
+     * 연동 성공
+     * */
     @DeleteMapping("/myPage")
     public ResponseFormat deleteUser(@RequestBody @Valid UserReqDtos.DELETE delete){
         userService.deleteUser(delete);
         return ResponseFormat.ok();
     }
 
+    /**
+     * 연동 성공
+     * */
     @PutMapping("/myPage/passwordUpdate")
     public ResponseFormat passwordUpdate(@RequestBody @Valid UserReqDtos.PASSWORDUPDATE passwordUpdate){
         userService.passwordUpdate(passwordUpdate);
         return ResponseFormat.ok();
     }
 
+    /**
+     * 연동 성공
+     * */
     @PutMapping("/myPage")
     public ResponseFormat updateUser(@RequestBody @Valid UserReqDtos.UPDATE update){
         userService.updateUser(update);
