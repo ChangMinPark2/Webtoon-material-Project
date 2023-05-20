@@ -150,8 +150,9 @@
 <header>
 </header>
 <div class="search">
-    <input type="text" placeholder="검색어 입력">
-    <img class="searchimg" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position: absolute; top: 10px; right: 12px; margin: 0;" width="17px">
+    <input type="text" id="productName" placeholder="검색어 입력">
+    <img class="searchimg" id="search" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position: absolute; top: 10px; right: 12px; margin: 0;" width="17px" onclick="handleSearch()"></img>
+
 </div>
 <div class="items-container">
     <aside class="side-nav">
@@ -227,4 +228,33 @@
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function handleSearch() {
+        const productName = document.getElementById("productName").value;
+        if (productName) {
+            // 쿠키 설정
+            document.cookie = `productName=${productName}`;
+
+            // Axios를 사용하여 쿠키 값을 전송
+            axios.post('http://localhost:8080/api/v1/search', null, {
+                headers: {
+                    Cookie: document.cookie
+                }
+            })
+                .then(function(response) {
+                    // 응답 처리
+                    console.log(response.data);
+                })
+                .catch(function(error) {
+                    // 에러 처리
+                    console.log(error);
+                });
+        } else {
+            console.log("검색어를 입력해주세요.");
+        }
+    }
+
+
+</script>
 </html>

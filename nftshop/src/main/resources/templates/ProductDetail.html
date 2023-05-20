@@ -78,10 +78,11 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   window.onload = function() {
+    const productName = getCookie("productName");
     axios
             .get('http://localhost:8080/api/v1/products', {
               params: {
-                productName: 'htmltestimage1'
+                productName: productName
               }
             })
             .then(function(response) {
@@ -90,6 +91,7 @@
                 document.getElementById("productsNames").innerText = data.data.productsNames;
                 document.getElementById("description").innerText = data.data.description;
                 document.getElementById("price").innerText = data.data.price + "원";
+                console.log(1)
               } else {
                 alert(data.message);
               }
@@ -97,18 +99,17 @@
               axios
                       .get('http://localhost:8080/api/v1/image', {
                         params: {
-                          productsName: 'htmltestimage1'
-                        }
+                          productName: 'aatest1'
+                        },
+                        responseType: 'blob' // 서버로부터 Blob 객체로 응답 받기
                       })
                       .then(function(response) {
-                        const data = response.data;
-                        if (data.result) {
-                          const productImageURL = 'http://localhost:8080/api/v1/image?productsName=htmltestimage1'; // 이미지 URL을 직접 지정
-                          document.getElementById("productImage").src = productImageURL;
-
-                        } else {
-                          alert(data.message);
-                        }
+                        const blob = response.data; // Blob 객체
+                        const objectURL = URL.createObjectURL(blob); // Blob 객체를 URL로 변환
+                        console.log(2);
+                        console.log(objectURL);
+                        document.getElementById("productImage").src = objectURL; // 이미지 표시
+                        console.log(3);
                       })
                       .catch(function(error) {
                         console.log(error);

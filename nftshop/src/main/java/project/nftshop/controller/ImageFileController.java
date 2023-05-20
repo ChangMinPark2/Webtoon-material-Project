@@ -16,9 +16,9 @@ public class ImageFileController {
     private final ImageFileService imageFileService;
 
     @GetMapping
-    public ResponseEntity<?> readImage(@RequestParam(name = "productsName") String productsName) throws IOException {
+    public ResponseEntity<?> readImage(@RequestParam(name = "productName") String productName) throws IOException {
 
-        return imageFileService.hhjFileRead(productsName);
+        return imageFileService.hhjFileRead(productName);
     }
 }
 
