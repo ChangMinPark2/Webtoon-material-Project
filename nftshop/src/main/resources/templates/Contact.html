@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WMSS</title>
+  <script src="https://kit.fontawesome.com/88f0a2c689.js" crossorigin="anonymous"></script>
+  <style>
+        body{
+      margin: 0;
+      font-family:wfont_f20312_51504daf241248068326c026a1945754, wf_51504daf241249068326c026a, orig_futura_it_book;
+    }
+    a{
+      text-decoration: none;
+      color: #A16B54;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 8px 12px;
+    }
+    .navbar__logo{
+      font-size: 30px;
+      color: #E4C6B0;
+    }
+
+    .navbar__logo i {
+      color: #d49466;
+    }
+
+    .navbar__menu{
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      font-size: 25px;
+      align-items: center;
+    }
+
+    .navbar__menu li{
+      padding : 8px 12px;
+    }
+    .navbar__menu li:hover{
+      background-color: #d49466;
+      border-radius: 4px;
+    }
+    .navbar__icons{
+      list-style: none;
+      color: #d49466;
+      display: flex;
+    }
+
+    .navbar__icons li{
+      padding: 8px 12px;
+    }
+
+    .navbar__toogleBtn{
+      display: none;
+      position: absolute;
+      right: 32px;
+      font-size: 24px;
+      color: #d49466;
+    }
+    .container {
+      display: flex;
+      text-align: center;
+      justify-content:center;
+    }
+    .content{
+      width: 30%;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content:center;
+    }
+    p {
+      font-size: 18px;
+      line-height:30px;
+    }
+
+    </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar__logo">
+    <i class="fa-solid fa-book-open"></i>
+    <a href="./Main.html">WMSS</a>  <!--아이콘 클릭했을 때 홈 화면으로 넘어가게 해주는 부분-->
+  </div>
+  <div class="menu">
+    <ul class="navbar__menu">
+      <li><a href="">shop</a></li>
+      <li><a href="./About.html">about</a></li>
+      <li><a href="#" style="color: #d49466;">contact</a></li>
+      <li><a href="">product_rgstr</a></li>
+    </ul>
+  </div>
+  <ui class="navbar__icons">
+    <li><a href="./SignUp.html">SignUp</a></li>
+    <li><a href="./SignIn">SignIn</a></li>
+  </ui>
+
+  <a href="#" class="navbar__toogleBtn">
+    <i class="fa-solid fa-bars"></i>
+  </a>
+</nav>
+<div class="container">
+  <div class="content">
+    <h2>CONTACT</h2>
+    <p>
+      Any questions about our Site?<br>
+      Or do you just want to say hi?
+    </p>
+    <p style="color:#d49466">
+      write us at
+    </p>
+    <p>
+      info@WMSS.kr for customers<br>
+      info@MaterialSS.kr for retailers
+    </p>
+    <p style="color:#d49466">
+      call us on
+    </p>
+    <p>
+      +82 12 234 56 789<br>
+      (available at office days between 10 am and 4 pm)
+    </p>
+  </div>
+</div>
