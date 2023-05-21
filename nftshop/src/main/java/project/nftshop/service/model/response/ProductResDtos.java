@@ -29,6 +29,15 @@ public class ProductResDtos {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor
     @Builder
+    public static class READ_SAVE_NAME{
+
+        private String saveName;
+    }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Builder
     public static class READ_MY_PRODUCT{
 
         private List<String> productsNames;

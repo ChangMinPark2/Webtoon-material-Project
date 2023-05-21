@@ -50,10 +50,11 @@
     </ul>
 </div>
     <div class="products">
+        <input type="text", id="saveName">
         <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
         <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
+        <a href=""><img src="productsImg/0beaf8d6-7bd8-47cc-8b8a-6b335275248c.png" width="350" height="400" alt="작품이미지2"></a>
+        <a href=""><img src="" id="test" width="350" height="400" alt="작품이미지2"></a>
     </div>
 
     <div class="footer">
@@ -61,4 +62,34 @@
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    window.onload = function() {
+        axios
+            .get('http://localhost:8080/api/v1/products/save', {
+                params: {
+                    productName: 'aatest1'
+                }
+            })
+            .then(function(response) {
+                const data = response.data;
+                console.log(data)
+                if (data.result) {
+                    // const saveNameElement = document.getElementById("saveName");
+                    // saveNameElement.innerText = data.data.productsNames;
+                    // console.log(saveNameElement.innerText);
+                    // const saveName = data.data.productsNames;
+                    const imageElement = document.getElementById('test');
+                    console.log(1)
+                    console.log(imageElement)
+                    console.log(2)
+                    imageElement.src = "productsImg/" + data.data.saveName; // 이미지 표시
+
+                } else {
+                    alert(data.message);
+                }
+            });
+    };
+</script>
+
 </html>

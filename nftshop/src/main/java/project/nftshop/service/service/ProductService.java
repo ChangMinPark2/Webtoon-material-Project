@@ -77,6 +77,17 @@ public class ProductService {
         return readToProduct;
     }
 
+    public ProductResDtos.READ_SAVE_NAME getSaveName(String productName){
+        final Product product = productRepository.findByProductsNames(productName)
+                .orElseThrow(() -> new NotFoundException());
+
+        ProductResDtos.READ_SAVE_NAME readSaveName = ProductResDtos.READ_SAVE_NAME.builder()
+                .saveName(product.getImageFile().getSaveName())
+                .build();
+
+        return readSaveName;
+    }
+
     public ProductResDtos.READ_MY_PRODUCT getMyProducts(String identity) {
         List<String> productNames = userProductRepository.findProductNamesByUserIdentity(identity);
         return ProductResDtos.READ_MY_PRODUCT

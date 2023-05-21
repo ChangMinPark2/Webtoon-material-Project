@@ -90,6 +90,43 @@ public class ImageFileService {
         return new ResponseEntity<>(resource, httpHeaders, HttpStatus.OK);
     }
 
+//    public List<ResponseEntity<byte[]>> getAllImages() throws IOException {
+//        List<Product> products = productRepository.findAll();
+//
+//        List<ResponseEntity<byte[]>> imageResponses = new ArrayList<>();
+//
+//        for (Product product : products) {
+//            ImageFile imageFile = product.getImageFile();
+//
+//            String saveFile = imageFile.getSaveName();
+//            String originName = imageFile.getFileName();
+//            String contentType = imageFile.getContentType();
+//
+//            Path path = Paths.get(getFullPath(saveFile));
+//
+//            byte[] imageBytes = Files.readAllBytes(path);
+//
+//            HttpHeaders httpHeaders = new HttpHeaders();
+//            httpHeaders.setContentDisposition(
+//                    ContentDisposition.builder("attachment")
+//                            .filename(originName, StandardCharsets.UTF_8)
+//                            .build()
+//            );
+//            httpHeaders.setContentType(MediaType.parseMediaType(contentType));
+//
+//            ResponseEntity<byte[]> imageResponse = new ResponseEntity<>(imageBytes, httpHeaders, HttpStatus.OK);
+//            imageResponses.add(imageResponse);
+//        }
+//
+//        return imageResponses;
+//    }
+
+//    private String getFileName(String identity){
+//
+//    }
+
+
+
 
     private String getFullPath(String saveName) {
 

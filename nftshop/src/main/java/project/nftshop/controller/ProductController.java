@@ -36,6 +36,11 @@ public class ProductController {
             return ResponseFormat.ok(productService.readToProductName(productName));
     }
 
+    @GetMapping("/save")
+    public ResponseFormat<ProductResDtos.READ> readSaveName(@RequestParam(name = "productName") String productName){
+        return ResponseFormat.ok(productService.getSaveName(productName));
+    }
+
     @GetMapping("/myProduct")
     public ResponseFormat<ProductResDtos.READ_MY_PRODUCT> readToMyProducts(@RequestParam(name = "identity") String identity){
         return ResponseFormat.ok(productService.getMyProducts(identity));
