@@ -26,4 +26,8 @@ public interface ProductMapper {
     @Mapping(source = "product.price", target = "price")
     @Mapping(source = "product.description", target = "description")
     ProductResDtos.READ toReadDto(Product product);
+
+    @Mapping(target = "productsNames", source = "product.productsNames")
+    @Mapping(target = "saveName", source = "product.imageFile.saveName")
+    ProductResDtos.READ_ALL_PRODUCT_IMAGE toReadAll(Product product);
 }

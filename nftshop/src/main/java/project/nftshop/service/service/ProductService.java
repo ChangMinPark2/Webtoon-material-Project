@@ -19,7 +19,9 @@ import project.nftshop.service.model.mapper.UserProductMapper;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -90,10 +92,19 @@ public class ProductService {
 
     public ProductResDtos.READ_MY_PRODUCT getMyProducts(String identity) {
         List<String> productNames = userProductRepository.findProductNamesByUserIdentity(identity);
+
         return ProductResDtos.READ_MY_PRODUCT
                 .builder()
                 .productsNames(productNames)
                 .build();
+    }
+
+    public List<ProductResDtos.READ_ALL_PRODUCT_IMAGE> getAll() {
+        List<Product> products = productRepository.findAll();
+
+        return products.stream()
+                .map(productMapper::toReadAll)
+                .collect(Collectors.toList());
     }
 
     @Transactional

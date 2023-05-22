@@ -174,16 +174,18 @@
         </ul>
     </aside>
 
+    <ul id="productList">asdas
+    </ul>
     <div class="items">
         <section>
             <div class="card">
-                <img src="test1.jpg" class="card-img-top">
+                <img src="" id="listimg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
+                    <p class="card-text" id="listName">제품명 : 학교 교실안 배경</p>
                 </div>
             </div>
+
             <div class="card">
                 <img src="test1.jpg" class="card-img-top">
                 <div class="card-body">
@@ -230,31 +232,23 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    function handleSearch() {
-        const productName = document.getElementById("productName").value;
-        if (productName) {
-            // 쿠키 설정
-            document.cookie = `productName=${productName}`;
-
-            // Axios를 사용하여 쿠키 값을 전송
-            axios.post('http://localhost:8080/api/v1/search', null, {
-                headers: {
-                    Cookie: document.cookie
+    window.onload = function() {
+        axios
+            .get('http://localhost:8080/api/v1/products/myProduct', {
+                params: {
+                    identity: 'test1'
                 }
             })
-                .then(function(response) {
-                    // 응답 처리
-                    console.log(response.data);
-                })
-                .catch(function(error) {
-                    // 에러 처리
-                    console.log(error);
-                });
-        } else {
-            console.log("검색어를 입력해주세요.");
-        }
-    }
+            .then(function(response) {
+                const data = response.data;
+                console.log(data)
+                if (data.result) {
+                    document.getElementById('productList').innerText = data.data.productsNames
 
-
+                } else {
+                    alert(data.message);
+                }
+            });
+    };
 </script>
 </html>

@@ -9,6 +9,7 @@ import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import project.nftshop.service.service.ProductService;
 import java.io.IOException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -44,6 +45,11 @@ public class ProductController {
     @GetMapping("/myProduct")
     public ResponseFormat<ProductResDtos.READ_MY_PRODUCT> readToMyProducts(@RequestParam(name = "identity") String identity){
         return ResponseFormat.ok(productService.getMyProducts(identity));
+    }
+
+    @GetMapping("/all")
+    public ResponseFormat<List<ProductResDtos.READ_ALL_PRODUCT_IMAGE>> readAll(){
+        return ResponseFormat.ok(productService.getAll());
     }
 
     @PutMapping
