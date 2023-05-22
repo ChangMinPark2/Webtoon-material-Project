@@ -73,6 +73,11 @@
             width: 27.5rem;
             float: left;
         }
+        .card {
+            width: 500px;
+            height: 500px;
+        }
+
 
         .mbyRhc {
             display: flex;
@@ -154,101 +159,108 @@
     <img class="searchimg" id="search" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position: absolute; top: 10px; right: 12px; margin: 0;" width="17px" onclick="handleSearch()"></img>
 
 </div>
-<div class="items-container">
-    <aside class="side-nav">
-        <ul class="side-menu">
-            <li class="category" style="font-size: 30px;">filter
-                <hr>
-                <button id ="spreadBtn02" class="mbyRhc" aria-expanded="false">
-                            <span class="more">
-                                <span>Character</span>
-                                <ul id ="hiddenList01" class="list" style="display: none;">
-                                    <li>내용</li>
-                                    <li>내용</li>
-                                    <li>내용</li>
-                                </ul>
-                            </span>
-                </button>
-                <hr>
-            </li>
-        </ul>
-    </aside>
-
-    <ul id="productList">asdas
-    </ul>
+<!--<div class="items-container">-->
+<!--    <aside class="side-nav">-->
+<!--        <ul class="side-menu">-->
+<!--            <li class="category" style="font-size: 30px;">filter-->
+<!--                <hr>-->
+<!--                <button id ="spreadBtn02" class="mbyRhc" aria-expanded="false">-->
+<!--                            <span class="more">-->
+<!--                                <span>Character</span>-->
+<!--                                <ul id ="hiddenList01" class="list" style="display: none;">-->
+<!--                                    <li>내용</li>-->
+<!--                                    <li>내용</li>-->
+<!--                                    <li>내용</li>-->
+<!--                                </ul>-->
+<!--                            </span>-->
+<!--                </button>-->
+<!--                <hr>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </aside>-->
+    <ul id="productList">
     <div class="items">
         <section>
-            <div class="card">
-                <img src="" id="listimg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text" id="listName">제품명 : 학교 교실안 배경</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="test1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="test1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="test1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="test1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="test1.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">배경</h5>
-                    <p class="card-text">제품명 : 학교 교실안 배경</p>
-                    <p class="card-pirce">가격 : ?</p>
-                </div>
-            </div>
         </section>
     </div>
+    </ul>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     window.onload = function() {
         axios
-            .get('http://localhost:8080/api/v1/products/myProduct', {
-                params: {
-                    identity: 'test1'
-                }
+            .get('http://localhost:8080/api/v1/products/all', {
+                withCredentials: true // withCredentials 설정 추가
             })
             .then(function(response) {
                 const data = response.data;
-                console.log(data)
+                console.log(data);
                 if (data.result) {
-                    document.getElementById('productList').innerText = data.data.productsNames
+                    const productList = data.data; // 응답 데이터의 배열
 
+                    const productListElement = document.getElementById('productList');
+
+                    productList.forEach(function(product) {
+                        const li = document.createElement('li');
+                        li.classList.add('items');
+
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.style.width = '360px'; // 크기 고정
+
+                        const image = document.createElement('img');
+                        image.src = 'productsImg/' + product.saveName;
+                        image.classList.add('card-img-top');
+
+                        const cardBody = document.createElement('div');
+                        cardBody.classList.add('card-body');
+
+                        const cardTitle = document.createElement('h5');
+                        cardTitle.classList.add('card-title');
+                        cardTitle.innerText = '배경';
+
+                        const cardText = document.createElement('p');
+                        cardText.classList.add('card-text');
+                        cardText.innerText = '제품명: ' + product.productsNames;
+
+                        cardBody.appendChild(cardTitle);
+                        cardBody.appendChild(cardText);
+
+                        card.appendChild(image);
+                        card.appendChild(cardBody);
+
+                        card.addEventListener('click', function() {
+                            // 클릭한 제품의 이름
+                            var productName = product.productsNames;
+
+                            // 쿠키에 제품 이름 저장
+                            document.cookie = "productName=" + productName;
+
+                            // ProductDetail.html로 화면 전환
+                            window.location.href = "ProductDetail.html";
+                        });
+
+
+                        li.appendChild(card);
+                        productListElement.appendChild(li);
+                    });
                 } else {
                     alert(data.message);
                 }
+            })
+            .catch(function(error) {
+                console.log(error);
             });
     };
+
+    function displayProductDetails(product) {
+        // 클릭한 제품의 세부 정보를 표시하는 로직 작성
+        // 예시: 제품의 정보를 모달창 등에 표시
+        console.log('제품명:', product.productsNames);
+        console.log('이미지:', product.saveName);
+    }
+
+
 </script>
 </html>
