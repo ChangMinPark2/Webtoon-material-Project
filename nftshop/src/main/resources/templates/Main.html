@@ -23,7 +23,7 @@
     </div>
 
     <ul class="navbar__menu">
-        <li><a href="">shop</a></li>
+        <li><a href="#" onclick="checkLogin()">shop</a></li>
         <li><a href="./About.html">about</a></li>
         <li><a href="./Contact.html">contact</a></li>
         <li><a href="">product_rgstr</a></li>
@@ -39,9 +39,14 @@
         <i class="fa-solid fa-bars"></i>
     </a>
 </nav>
-
+<div class="addd_product">
+    <h1 class="test1">
+        Webtoon Material Sales site
+    </h1>
+</div>
+<br><br><br>
 <div class="p-5 mb-4 bg-light rounded-3">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=a80bdc&width=500&height=500&section=header&text=WMSS&fontSize=80&animation=fadeIn&fontAlignY=38&desc=Webtoon Material Sales site  웹툰 소재 판매 사이트&descAlignY=51&descAlign=62" width="90%" lt="Backble" />
+    <img src="메인이미지.png" width="80%" lt="Backble" />
 </div>
 
 <div class="top">
@@ -50,11 +55,10 @@
     </ul>
 </div>
     <div class="products">
-        <input type="text", id="saveName">
         <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
         <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="productsImg/0beaf8d6-7bd8-47cc-8b8a-6b335275248c.png" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="" id="test" width="350" height="400" alt="작품이미지2"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
     </div>
 
     <div class="footer">
@@ -90,6 +94,21 @@
                 }
             });
     };
+
+    function checkLogin() {
+        // 로그인 여부를 확인하는 코드 작성
+        const isLoggedIn = false; // 로그인 여부를 확인하는 변수 (예시로 false로 설정)
+
+        if (isLoggedIn) {
+            // 로그인된 상태이면 shop 페이지로 이동
+            window.location.href = "shop.html";
+        } else {
+            // 로그인이 필요한 상태이면 알림 메시지 출력 후 SignIn.html로 이동
+            alert("로그인이 필요합니다.");
+            window.location.href = "SignIn.html";
+        }
+    }
+
 </script>
 
 </html>

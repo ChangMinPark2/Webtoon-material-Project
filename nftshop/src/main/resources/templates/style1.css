@@ -22,6 +22,14 @@ a{
     padding: 5px;
 }
 
+.addd_product{
+    color: rgba(30, 28, 27, 0.89);
+    font-size: 30px;
+    margin: 0px;
+    background-color: rgba(194, 154, 154, 0.65);
+    padding: 5px;
+}
+
 .products_container {
     display: flex;
 }
