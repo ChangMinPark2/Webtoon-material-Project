@@ -17,6 +17,8 @@ public class ProductResDtos {
         private String description;
 
         private int price;
+
+        private String saveName;
     }
 
     @Getter
