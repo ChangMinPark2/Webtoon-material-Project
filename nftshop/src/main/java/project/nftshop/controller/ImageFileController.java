@@ -2,9 +2,12 @@ package project.nftshop.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.nftshop.service.service.ImageFileService;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,10 +26,10 @@ public class ImageFileController {
         return imageFileService.hhjFileRead(productName);
     }
 
-//    @GetMapping("/all")
-//    public List<ResponseEntity<byte[]>> getAllImages() throws IOException {
-//        return imageFileService.getAllImages();
-//    }
+    @GetMapping("/download")
+    public ResponseEntity<Resource> downloadImage(@RequestParam String saveName) throws IOException {
+        return imageFileService.downloadImage(saveName);
+    }
 }
 
 

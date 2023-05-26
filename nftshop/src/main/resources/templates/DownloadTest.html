@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Image Download Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h1>Image Download Test</h1>
+<button onclick="downloadImage()">Download Image</button>
+<script>
+  function downloadImage() {
+    // 다운로드할 이미지의 saveName을 지정합니다.
+    var saveName = "ce643bfb-70e0-45aa-b952-c67da672dda1.png"; // 실제 이미지의 saveName으로 변경해야 합니다.
+
+
+    axios
+            .get('http://localhost:8080/api/v1/image/download', {
+              params: {
+                saveName: saveName
+              },
+              responseType: 'blob'
+            })
+            .then(response => {
+              // 응답에서 Blob 데이터를 추출합니다.
+              var blobData = response.data;
+
+              // Blob 데이터를 URL로 변환하여 링크를 생성합니다.
+              var url = URL.createObjectURL(blobData);
+
+              // 링크를 클릭하여 이미지를 다운로드합니다.
+              var link = document.createElement('a');
+              link.href = url;
+              link.download = saveName;
+              link.click();
+
+              // 링크를 제거합니다.
+              URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+              console.error('Error downloading image:', error);
+            });
+  }
+</script>
+</body>
+</html>
