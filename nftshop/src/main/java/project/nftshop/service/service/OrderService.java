@@ -51,7 +51,7 @@ public class OrderService {
      * 다대다 구현 후 product를 List로 받아야하지 않을까? 의문
      * product의 데이터가 없어서 테스트 x
      * */
-
+    //내가 등록한 상품이면 exception
     @Transactional
     public void createOrder(OrderReqDtos.CREATE create){
 

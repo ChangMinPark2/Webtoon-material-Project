@@ -52,6 +52,7 @@
       text-align: left;
       font-size: 15px;
       margin-bottom: 10px;
+      margin-top: 10px;
      }
 
     .container2 {
@@ -63,6 +64,15 @@
     .payment {
     text-align: right;
     font-size: 20px;
+    }
+    .order-info {
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .order-info:hover {
+      background-color: rgba(141, 39, 17, 0.21);
     }
 
 
@@ -98,19 +108,94 @@
 </div>
 <body>
   <div class="container">
-    <div style="margin-bottom:20px;">주문상세</div>
+    <div style="margin-bottom:20px;" id="orderList">주문상세</div>
       <div class="order-info">
-        <div class="date">2023.05.26</div>
+        <div class="date" id="localDate">2023.05.26</div>
         <hr>
         <div class="container2">
-          <span class="product">도쿄3</span>
-          <span class="total-price">1000원</span>
+          <span class="product" id="productName">도쿄3</span>
+          <span class="total-price" id="price">1000원</span>
         </div>
-        <div class="payment">
+        <div class="payment" id="payment">
           <span>Card</span>
         </div>
       </div>
     
   </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  window.onload = function() {
+    const identity = getCookie("identity")
+
+    axios
+            .get('http://localhost:8080/api/v1/orders', {
+              params: {
+                identity: identity
+              }
+            })
+            .then(function(response) {
+              const data = response.data;
+              console.log(data);
+              if (data.result) {
+                const productList = data.data;
+
+                const productListElement = document.getElementById('orderList');
+
+                productList.forEach(function(order) {
+                  const orderInfo = document.createElement('div');
+                  orderInfo.classList.add('order-info');
+
+                  const dateElement = document.createElement('div');
+                  dateElement.classList.add('date');
+                  dateElement.textContent = order.paymentDate;
+                  orderInfo.appendChild(dateElement);
+
+                  const hrElement = document.createElement('hr');
+                  orderInfo.appendChild(hrElement);
+
+                  const container2 = document.createElement('div');
+                  container2.classList.add('container2');
+
+                  const productName = document.createElement('span');
+                  productName.classList.add('product');
+                  productName.textContent = order.productsName.join(', ');
+                  container2.appendChild(productName);
+
+                  const totalPrice = document.createElement('span');
+                  totalPrice.classList.add('total-price');
+                  totalPrice.textContent = `${order.totalPrice}원`;
+                  container2.appendChild(totalPrice);
+
+                  orderInfo.appendChild(container2);
+
+                  const paymentType = document.createElement('div');
+                  paymentType.classList.add('payment');
+                  paymentType.textContent = order.paymentType;
+                  orderInfo.appendChild(paymentType);
+
+                  orderInfo.addEventListener('click', function() {
+                    //여기다 다운로드 구현하기
+                  });
+
+                  productListElement.appendChild(orderInfo);
+                });
+              } else {
+                console.log('No orders found.');
+              }
+            })
+            .catch(function(error) {
+              console.error('Error retrieving orders:', error);
+            });
+  }
+
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    }
+    return null;
+  }
+</script>
 </html>
