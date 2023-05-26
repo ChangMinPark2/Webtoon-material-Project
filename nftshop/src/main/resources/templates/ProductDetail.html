@@ -57,7 +57,10 @@
           </h3>
         </div>
       </div>
-      <button class="order_button" onClick="location.href='OrderProduct.html'">ORDER</button>
+      <button class="order_button" onclick="redirectToOrderPage1()">ORDER</button>
+      <button class="x_button" onclick="goToTestPage()">뒤로가기</button>
+
+
     </div>
   </div>
 </div>
@@ -78,10 +81,12 @@
               const data = response.data;
               if (data.result) {
                 document.getElementById("productsNames").innerText = data.data.productsNames;
-                document.getElementById("price").innerText = data.data.price;
+                document.getElementById("price").innerText = data.data.price + "원";
                 document.getElementById("description").innerText = data.data.description;
                 const imageElement = document.getElementById('test1');
                 imageElement.src = "productsImg/" + data.data.saveName;
+
+                // redirectToOrderPage1();
               } else {
                 alert(data.message);
               }
@@ -91,6 +96,19 @@
             });
   };
 
+  function redirectToOrderPage1() {
+    const productName = encodeURIComponent(document.getElementById("productsNames").innerText);
+    const price = encodeURIComponent(document.getElementById("price").innerText);
+    const description = encodeURIComponent(document.getElementById("description").innerText);
+    const imageElement = document.getElementById('test1');
+    const saveName = encodeURIComponent(imageElement.src);
+    console.log(productName)
+    const url = `OrderProduct.html?productName=${productName}&price=${price}&description=${description}&saveName=${saveName}`;
+    location.href = url;
+  }
+  function goToTestPage() {
+    location.href = "productsales.html";
+  }
   // 쿠키에서 특정 이름의 값을 가져오는 함수
   function getCookie(name) {
     const value = "; " + document.cookie;

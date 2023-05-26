@@ -19,10 +19,6 @@ public class OrderReqDtos {
         @Size(min = 5, max = 15, message = "아이디는 5~15자를 입력해주세요.")
         private String identity;
 
-        @NotBlank(message = "비밀번호를 입력해주세요.")
-        @Size(min = 5, max = 15, message = "비밀번호는 5~15자를 입력해주세요.")
-        private String password;
-
         @NotBlank(message = "need a petType")
         private String paymentType;
 

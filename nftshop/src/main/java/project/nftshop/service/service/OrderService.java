@@ -58,8 +58,6 @@ public class OrderService {
         final User user = userRepository.findByIdentity(create.getIdentity())
                 .orElseThrow(() -> new UserNotFoundException());
 
-        checkPassword(user.getPassword(), create.getPassword());
-
         LocalDate paymentDate = LocalDate.now();
 
         Order order = orderMapper.toOrderEntity(create, user, paymentDate, Collections.emptyList(), 0);
