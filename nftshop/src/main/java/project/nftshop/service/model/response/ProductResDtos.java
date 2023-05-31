@@ -30,6 +30,21 @@ public class ProductResDtos {
         private String saveName;
     }
 
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Builder
+    public static class READ_TOP4{
+
+        private String top1;
+
+        private String top2;
+
+        private String top3;
+
+        private String top4;
+    }
+
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)

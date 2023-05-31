@@ -44,7 +44,7 @@ public class Product extends BaseEntity {
     private List<UserProduct> userProducts = new ArrayList<>();
 
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "image_file_id")
     private ImageFile imageFile;
 

@@ -110,14 +110,14 @@
   <div class="container">
     <div style="margin-bottom:20px;" id="orderList">주문상세</div>
       <div class="order-info">
-        <div class="date" id="localDate">2023.05.26</div>
+        <div class="date" id="localDate"></div>
         <hr>
         <div class="container2">
-          <span class="product" id="productName">도쿄3</span>
-          <span class="total-price" id="price">1000원</span>
+          <span class="product" id="productName"></span>
+          <span class="total-price" id="price"></span>
         </div>
         <div class="payment" id="payment">
-          <span>Card</span>
+          <span></span>
         </div>
       </div>
     
@@ -138,6 +138,7 @@
               const data = response.data;
               console.log(data);
               if (data.result) {
+
                 const productList = data.data;
 
                 const productListElement = document.getElementById('orderList');
@@ -175,8 +176,11 @@
                   orderInfo.appendChild(paymentType);
 
                   orderInfo.addEventListener('click', function() {
-                    //여기다 다운로드 구현하기
+                    const saveNames = order.saveNames;
+                    document.cookie = `saveNames=${saveNames}`;
+                    window.location.href = 'DownloadTest.html'; // Redirect to DownloadTest.html
                   });
+
 
                   productListElement.appendChild(orderInfo);
                 });

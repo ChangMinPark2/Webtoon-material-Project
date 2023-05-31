@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import project.nftshop.infra.error.model.ResponseFormat;
+import project.nftshop.persistence.entity.Product;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import project.nftshop.service.service.ProductService;
@@ -50,6 +51,11 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseFormat<List<ProductResDtos.READ_ALL_PRODUCT_IMAGE>> readAll(){
         return ResponseFormat.ok(productService.getAll());
+    }
+
+    @GetMapping("/quantity")
+    public ResponseFormat<ProductResDtos.READ_TOP4> productQuantity(){
+        return ResponseFormat.ok(productService.getTop4ProductsByQuantitySale());
     }
 
     @PutMapping

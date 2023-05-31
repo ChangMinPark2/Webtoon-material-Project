@@ -20,14 +20,17 @@ public class ImageFile extends BaseEntity {
     private String saveName;
 
     private String contentType;
-//
-//    @OneToOne(mappedBy = "imageFile")
-//    private Product product;
 
     @Builder
-    public ImageFile(String fileName, String saveName, String contentType) {
+    public ImageFile(String fileName,
+                     String saveName,
+                     String contentType) {
         this.fileName = fileName;
         this.saveName = saveName;
         this.contentType = contentType;
     }
+
+//    public void updateProduct(Product product){
+//        this.product = product;
+//    }
 }

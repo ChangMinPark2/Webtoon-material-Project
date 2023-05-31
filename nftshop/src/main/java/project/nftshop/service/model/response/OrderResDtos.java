@@ -20,5 +20,7 @@ public class OrderResDtos {
         private int totalPrice;
 
         private List<String> productsName;
+
+        private List<String> saveNames;
     }
 }

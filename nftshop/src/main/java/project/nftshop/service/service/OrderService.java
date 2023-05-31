@@ -6,10 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import project.nftshop.infra.error.exception.NotFoundException;
 import project.nftshop.infra.error.exception.UserNotFoundException;
 import project.nftshop.infra.error.exception.WrongPasswordException;
-import project.nftshop.persistence.entity.Order;
-import project.nftshop.persistence.entity.OrderProduct;
-import project.nftshop.persistence.entity.Product;
-import project.nftshop.persistence.entity.User;
+import project.nftshop.persistence.entity.*;
 import project.nftshop.persistence.repository.OrderProductRepository;
 import project.nftshop.persistence.repository.OrderRepository;
 import project.nftshop.persistence.repository.ProductRepository;
@@ -111,7 +108,8 @@ public class OrderService {
 
         for (Order order : orders) {
             List<String> productsNames = getProductsNameByOrder(order);
-            result.add(orderMapper.toReadDto(order, productsNames));
+            List<String> saveNames = getSaveNameByOrder(order);
+            result.add(orderMapper.toReadDto(order, productsNames, saveNames));
         }
 
         return result;
@@ -123,6 +121,15 @@ public class OrderService {
                 .stream()
                 .map(OrderProduct::getProduct)
                 .map(Product::getProductsNames)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> getSaveNameByOrder(Order order){
+        return order.getOrderProducts()
+                .stream()
+                .map(OrderProduct::getProduct)
+                .map(Product::getImageFile)
+                .map(ImageFile::getSaveName)
                 .collect(Collectors.toList());
     }
 

@@ -39,14 +39,10 @@
         <i class="fa-solid fa-bars"></i>
     </a>
 </nav>
-<div class="addd_product">
-    <h1 class="test1">
-        Webtoon Material Sales site
-    </h1>
-</div>
 <br><br><br>
 <div class="p-5 mb-4 bg-light rounded-3">
-    <img src="메인이미지.png" width="80%" lt="Backble" />
+    <img src="maindraw.png" width="80%" lt="Backble" />
+    <br><br><br><br>
 </div>
 
 <div class="top">
@@ -55,10 +51,10 @@
     </ul>
 </div>
     <div class="products">
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
-        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2" id="top1"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2" id="top2"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2" id="top3"></a>
+        <a href=""><img src="test1.jpg" width="350" height="400" alt="작품이미지2" id="top4"></a>
     </div>
 
     <div class="footer">
@@ -66,4 +62,38 @@
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // 페이지 로딩이 완료된 후에 실행할 함수
+    window.onload = function() {
+
+        axios
+            .get('http://localhost:8080/api/v1/products/quantity',{
+                withCredentials: true // withCredentials 설정 추가
+            })
+            .then(function(response) {
+                const data = response.data;
+                if (data.result) {
+                    const imageElement1 = document.getElementById('top1');
+
+                    const imageElement2 = document.getElementById('top2');
+
+                    const imageElement3 = document.getElementById('top3');
+
+                    const imageElement4 = document.getElementById('top4');
+
+                    imageElement1.src = "productsImg/" + data.data.top1;
+                    imageElement2.src = "productsImg/" + data.data.top2;
+                    imageElement3.src = "productsImg/" + data.data.top3;
+                    imageElement4.src = "productsImg/" + data.data.top4;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    };
+
+</script>
 </html>

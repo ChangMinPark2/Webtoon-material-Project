@@ -36,7 +36,6 @@ public class ImageFileService {
 
     private final ProductRepository productRepository;
 
-
     @Transactional
     public ImageFile hhjFileCreate(MultipartFile file) throws IOException { //매개변수 MultiFile 받고
 
@@ -58,10 +57,12 @@ public class ImageFileService {
 
         return create;
     }
-
+//    productName -> saveName 조회
     public ResponseEntity<Resource> downloadImage(String saveName) throws IOException {
+
         ImageFile imageFile = fileRepository.findBySaveName(saveName)
                 .orElseThrow(() -> new NotFoundException());
+        //saveName을 통해 ImageFile 객체찾기.
 
         File file = new File(getFullPath(saveName));
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
@@ -74,6 +75,26 @@ public class ImageFileService {
                 .contentType(MediaType.parseMediaType(imageFile.getContentType()))
                 .body(resource);
     }
+//
+//    public ResponseEntity<Resource> downloadImage(String productName) throws IOException {
+//
+//        Product product = productRepository.findByProductsNames(productName)
+//                .orElseThrow(() -> new NotFoundException());
+//
+//        File file = new File(getFullPath(product.getImageFile().getSaveName()));
+//        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + product.getImageFile().getFileName());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.parseMediaType(product.getImageFile().getContentType()))
+//                .body(resource);
+//    }
+
+
+
 
     public ResponseEntity<?> hhjFileRead(String productsName) throws IOException {
 

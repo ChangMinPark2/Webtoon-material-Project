@@ -10,10 +10,7 @@ import project.nftshop.infra.error.exception.DuplicatedProductNameException;
 import project.nftshop.infra.error.exception.NotFoundException;
 import project.nftshop.infra.error.exception.WrongPasswordException;
 import project.nftshop.persistence.entity.*;
-import project.nftshop.persistence.repository.ImageFileRepository;
-import project.nftshop.persistence.repository.ProductRepository;
-import project.nftshop.persistence.repository.UserProductRepository;
-import project.nftshop.persistence.repository.UserRepository;
+import project.nftshop.persistence.repository.*;
 import project.nftshop.service.model.mapper.ProductMapper;
 import project.nftshop.service.model.mapper.UserProductMapper;
 import project.nftshop.service.model.request.ProductReqDtos;
@@ -44,6 +41,8 @@ public class ProductService {
     private final UserProductRepository userProductRepository;
 
     private final UserProductMapper userProductMapper;
+
+    private final OrderProductRepository orderProductRepository;
 
     @Transactional
     public void createProduct(ProductReqDtos.CREATE create, MultipartFile file) throws IOException {
@@ -106,6 +105,23 @@ public class ProductService {
                 .map(productMapper::toReadAll)
                 .collect(Collectors.toList());
     }
+
+
+    public ProductResDtos.READ_TOP4 getTop4ProductsByQuantitySale() {
+
+        List<Product> products = productRepository.findTop4ByOrderByQuantitySaleDesc();
+
+        ProductResDtos.READ_TOP4 readTop4 = ProductResDtos.READ_TOP4.builder()
+                .top1(products.get(0).getImageFile().getSaveName())
+                .top2(products.get(1).getImageFile().getSaveName())
+                .top3(products.get(2).getImageFile().getSaveName())
+                .top4(products.get(3).getImageFile().getSaveName())
+                .build();
+
+        return readTop4;
+    }
+
+
 
     @Transactional
     public void updateProduct(ProductReqDtos.UPDATE update){

@@ -30,6 +30,11 @@ public class ImageFileController {
     public ResponseEntity<Resource> downloadImage(@RequestParam String saveName) throws IOException {
         return imageFileService.downloadImage(saveName);
     }
+//
+//    @GetMapping("/download")
+//    public ResponseEntity<Resource> downloadImage(@RequestParam String productName) throws IOException {
+//        return imageFileService.downloadImage(productName);
+//    }
 }
 
 
