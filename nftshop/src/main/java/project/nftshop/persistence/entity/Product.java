@@ -38,13 +38,13 @@ public class Product extends BaseEntity {
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.REMOVE},
+            cascade = {CascadeType.ALL},
             mappedBy = "product"
     )
     private List<UserProduct> userProducts = new ArrayList<>();
 
 
-    @OneToOne(cascade = {CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "image_file_id")
     private ImageFile imageFile;
 

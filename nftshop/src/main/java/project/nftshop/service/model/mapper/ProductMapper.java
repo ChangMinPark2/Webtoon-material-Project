@@ -31,4 +31,8 @@ public interface ProductMapper {
     @Mapping(target = "productsNames", source = "product.productsNames")
     @Mapping(target = "saveName", source = "product.imageFile.saveName")
     ProductResDtos.READ_ALL_PRODUCT_IMAGE toReadAll(Product product);
+
+    @Mapping(target = "productsNames", source = "product.productsNames")
+    @Mapping(target = "saveName", source = "product.imageFile.saveName")
+    ProductResDtos.READ_MY_PRODUCT toReadMyProduct(Product product);
 }

@@ -89,13 +89,13 @@ public class ProductService {
         return readSaveName;
     }
 
-    public ProductResDtos.READ_MY_PRODUCT getMyProducts(String identity) {
-        List<String> productNames = userProductRepository.findProductNamesByUserIdentity(identity);
+    public List<ProductResDtos.READ_MY_PRODUCT> getMyProducts(String identity) {
 
-        return ProductResDtos.READ_MY_PRODUCT
-                .builder()
-                .productsNames(productNames)
-                .build();
+        List<Product> products = userProductRepository.findProductByUserIdentity(identity);
+
+        return products.stream()
+                .map(productMapper::toReadMyProduct)
+                .collect(Collectors.toList());
     }
 
     public List<ProductResDtos.READ_ALL_PRODUCT_IMAGE> getAll() {
@@ -141,6 +141,9 @@ public class ProductService {
 
         final Product product = productRepository.findByProductsNames(delete.getProductsNames())
                 .orElseThrow(() -> new NotFoundException());
+
+        final OrderProduct orderProduct = orderProductRepository.findByProduct_ProductsNames(delete.getProductsNames())
+                        .orElseThrow(() -> new NotFoundException());
 
         productRepository.delete(product);
     }

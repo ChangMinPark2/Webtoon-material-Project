@@ -42,7 +42,7 @@ public class Order extends BaseEntity {
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.REMOVE},
+            cascade = {CascadeType.ALL},
             mappedBy = "order"
     )
     private List<OrderProduct> orderProducts = new ArrayList<>();

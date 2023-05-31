@@ -113,16 +113,77 @@
 <div class="container">
     <div style="margin-bottom:20px;" id="orderList">1</div>
     <div class="order-info">
-        <div class="date" id="localDate" style="margin-left:170px">2023.05.28</div>
         <hr>
         <div class="container2">
             <span class="product" id="productName" style="margin-left:150px">작품 이름</span>
         </div>
         <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지"></a>
+            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
         </div>
     </div>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    window.onload = function() {
+        const identity = getCookie("identity")
+
+        axios
+            .get('http://localhost:8080/api/v1/products/myProduct', {
+                params: {
+                    identity: identity
+                }
+            })
+            .then(function(response) {
+                const data = response.data;
+                console.log(data);
+                if (data.result) {
+
+                    const productList = data.data;
+                    const productListElement = document.getElementById('orderList');
+
+                    productList.forEach(function(order) {
+                        const orderInfo = document.createElement('div');
+                        orderInfo.classList.add('order-info');
+
+                        const container2 = document.createElement('div');
+                        container2.classList.add('container2');
+
+                        const productName = document.createElement('span');
+                        productName.classList.add('product');
+                        productName.textContent = order.productsNames;
+                        container2.appendChild(productName);
+
+                        const productImage = document.createElement('img');
+                        productImage.src = 'productsImg/' + order.saveName;
+                        productImage.width = 250;
+                        productImage.height = 250;
+                        productImage.alt = '내상품이미지';
+
+                        const productLink = document.createElement('a');
+                        productLink.href = '#';
+                        productLink.appendChild(productImage);
+
+                        orderInfo.appendChild(container2);
+                        orderInfo.appendChild(productLink);
+                        productListElement.appendChild(orderInfo);
+                    });
+                } else {
+                    console.log('No orders found.');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error retrieving orders:', error);
+            });
+    }
+
+    function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) {
+            return parts.pop().split(";").shift();
+        }
+        return null;
+    }
+</script>
+</html>

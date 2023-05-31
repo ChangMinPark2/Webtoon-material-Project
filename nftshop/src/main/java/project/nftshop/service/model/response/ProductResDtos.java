@@ -63,6 +63,8 @@ public class ProductResDtos {
     @Builder
     public static class READ_MY_PRODUCT{
 
-        private List<String> productsNames;
+        private String productsNames;
+
+        private String saveName;
     }
 }
