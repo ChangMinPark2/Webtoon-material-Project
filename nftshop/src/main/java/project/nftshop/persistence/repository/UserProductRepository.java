@@ -11,10 +11,6 @@ import java.util.Optional;
 
 public interface UserProductRepository extends JpaRepository<UserProduct, Long> {
 
-//    @Query("SELECT up.product.productsNames FROM UserProduct up WHERE up.user.identity = :identity")
-//    List<String> findProductNamesByUserIdentity(@Param("identity") String identity);
-
-
     @Query("SELECT up.product FROM UserProduct up WHERE up.user.identity = :identity")
     List<Product> findProductByUserIdentity(@Param("identity") String identity);
 

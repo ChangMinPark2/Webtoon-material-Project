@@ -75,33 +75,6 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-//    public List<OrderResDtos.READ> readOrderInfo(String identity){
-//
-//        final Order order = orderRepository.findByUsersIdentity(identity)
-//                .orElseThrow(() -> new NotFoundException());
-//
-//        final List<String> productsName = getProductsNameByOrder(order);
-//
-//        return orderMapper.toReadDto(order, productsName);
-//    }
-
-//    public List<OrderResDtos.READ> readOrderInfo(String identity){
-//
-//        List<Order> order = orderRepository.findByUsersIdentity(identity);
-//
-//       // final List<String> productsName = getProductsNameByOrder(order);
-//        List<String> productsName = getProductsNameByOrder(order.)
-//        return orderMapper.toReadDto(order, productsName);
-//    }
-//
-//    private List<String> getProductsNameByOrder(Order order){
-//
-//        return order.getOrderProducts()
-//                .stream()
-//                .map(OrderProduct::getProduct)
-//                .map(Product::getProductsNames)
-//                .collect(Collectors.toList());
-//    }
     public List<OrderResDtos.READ> readOrderInfo(String identity) {
         List<Order> orders = orderRepository.findByUsersIdentity(identity);
         List<OrderResDtos.READ> result = new ArrayList<>();

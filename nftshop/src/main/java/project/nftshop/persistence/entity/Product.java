@@ -48,13 +48,6 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "image_file_id")
     private ImageFile imageFile;
 
-//    @OneToMany(
-//            fetch = FetchType.LAZY,
-//            cascade = {CascadeType.REMOVE},
-//            mappedBy = "product"
-//    )
-//    private List<OrderProduct> orderProducts = new ArrayList<>();
-
     @Builder
     public Product(String productsNames,
                    String description,

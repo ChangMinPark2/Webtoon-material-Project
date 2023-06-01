@@ -16,7 +16,6 @@ import project.nftshop.service.model.mapper.UserProductMapper;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

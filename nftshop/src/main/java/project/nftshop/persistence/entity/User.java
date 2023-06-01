@@ -44,13 +44,6 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @OneToMany(
-//            fetch = FetchType.LAZY,
-//            cascade = {CascadeType.REMOVE},
-//            mappedBy = "user"
-//    )
-//    private List<UserProduct> userProducts = new ArrayList<>();
-
     @Builder
     public User(String identity,
                 String password,

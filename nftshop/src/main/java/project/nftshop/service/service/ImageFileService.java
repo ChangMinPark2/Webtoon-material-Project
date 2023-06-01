@@ -13,10 +13,6 @@ import project.nftshop.persistence.entity.ImageFile;
 import project.nftshop.persistence.entity.Product;
 import project.nftshop.persistence.repository.ImageFileRepository;
 import project.nftshop.persistence.repository.ProductRepository;
-import project.nftshop.service.model.mapper.ProductMapper;
-import project.nftshop.service.model.response.ProductResDtos;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -75,26 +71,6 @@ public class ImageFileService {
                 .contentType(MediaType.parseMediaType(imageFile.getContentType()))
                 .body(resource);
     }
-//
-//    public ResponseEntity<Resource> downloadImage(String productName) throws IOException {
-//
-//        Product product = productRepository.findByProductsNames(productName)
-//                .orElseThrow(() -> new NotFoundException());
-//
-//        File file = new File(getFullPath(product.getImageFile().getSaveName()));
-//        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + product.getImageFile().getFileName());
-//
-//        return ResponseEntity.ok()
-//                .headers(headers)
-//                .contentType(MediaType.parseMediaType(product.getImageFile().getContentType()))
-//                .body(resource);
-//    }
-
-
-
 
     public ResponseEntity<?> hhjFileRead(String productsName) throws IOException {
 
