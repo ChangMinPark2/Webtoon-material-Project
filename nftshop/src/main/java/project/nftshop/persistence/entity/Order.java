@@ -33,7 +33,7 @@ public class Order extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User users;
+    private User user;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -51,7 +51,7 @@ public class Order extends BaseEntity {
         this.paymentTypes = paymentTypes;
         this.totalPrice = totalPrice;
         this.paymentDate = paymentDate;
-        this.users = users;
+        this.user = users;
         this.orderProducts = orderProducts;
     }
 

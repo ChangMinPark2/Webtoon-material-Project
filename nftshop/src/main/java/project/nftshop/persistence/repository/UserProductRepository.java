@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import project.nftshop.persistence.entity.Product;
+import project.nftshop.persistence.entity.User;
 import project.nftshop.persistence.entity.UserProduct;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface UserProductRepository extends JpaRepository<UserProduct, Long> 
 
     Optional<UserProduct> findByProduct_ProductsNames(String name);
 
+    List<UserProduct> findProductByUser(User user);
 }
