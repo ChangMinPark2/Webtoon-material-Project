@@ -4,14 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.nftshop.infra.error.exception.*;
-import project.nftshop.persistence.entity.Order;
-import project.nftshop.persistence.entity.OrderProduct;
-import project.nftshop.persistence.entity.User;
-import project.nftshop.persistence.entity.UserProduct;
-import project.nftshop.persistence.repository.OrderProductRepository;
-import project.nftshop.persistence.repository.OrderRepository;
-import project.nftshop.persistence.repository.UserProductRepository;
-import project.nftshop.persistence.repository.UserRepository;
+import project.nftshop.persistence.entity.*;
+import project.nftshop.persistence.repository.*;
 import project.nftshop.service.model.mapper.UserMapper;
 import project.nftshop.service.model.request.*;
 import project.nftshop.service.model.response.UserResDtos;
@@ -26,11 +20,12 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final UserMapper userMapper;
-    private final UserProductRepository userProductRepository;
 
     private final OrderRepository orderRepository;
 
     private final OrderProductRepository orderProductRepository;
+
+    private final ProductRepository productRepository;
 
     /**
      * create user service
@@ -116,11 +111,11 @@ public class UserService {
 
         checkPasswordMatch(user.getPassword(), delete.getPassword());
 
-        final List<UserProduct> userProductList = userProductRepository.findProductByUser(user);
+        final List<Product> products = productRepository.findByUser(user);
 
         final List<Order> orders = orderRepository.findByUser(user);
 
-        userProductRepository.deleteAll(userProductList);
+        productRepository.deleteAll(products);
 
         orderRepository.deleteAll(orders);
 

@@ -36,13 +36,9 @@ public class Product extends BaseEntity {
     @Column(name = "quantity_sale")
     private int quantitySale;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.ALL},
-            mappedBy = "product"
-    )
-    private List<UserProduct> userProducts = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "image_file_id")
@@ -54,18 +50,18 @@ public class Product extends BaseEntity {
                    int price,
                    int quantitySale,
                    ImageFile imageFile,
-                   List<UserProduct> userProducts) {
+                   User user) {
         this.productsNames = productsNames;
         this.description = description;
         this.price = price;
         this.quantitySale = quantitySale;
         this.imageFile = imageFile;
-        this.userProducts = userProducts;
+        this.user = user;
     }
 
-    public void updateUserProduct(List<UserProduct> userProducts){
-        this.userProducts = userProducts;
-    }
+//    public void updateUserProduct(List<UserProduct> userProducts){
+//        this.userProducts = userProducts;
+//    }
 
     /**
      * createOrder -> 판매수량 증가

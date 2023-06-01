@@ -12,7 +12,6 @@ import project.nftshop.infra.error.exception.WrongPasswordException;
 import project.nftshop.persistence.entity.*;
 import project.nftshop.persistence.repository.*;
 import project.nftshop.service.model.mapper.ProductMapper;
-import project.nftshop.service.model.mapper.UserProductMapper;
 import project.nftshop.service.model.request.ProductReqDtos;
 import project.nftshop.service.model.response.ProductResDtos;
 import java.io.IOException;
@@ -37,10 +36,6 @@ public class ProductService {
 
     private final UserRepository userRepository;
 
-    private final UserProductRepository userProductRepository;
-
-    private final UserProductMapper userProductMapper;
-
     private final OrderProductRepository orderProductRepository;
 
     @Transactional
@@ -53,13 +48,9 @@ public class ProductService {
 
         ImageFile imageFile = imageFileService.hhjFileCreate(file);
 
-        final Product product = productMapper.toProductEntity(create, imageFile);
+        final Product product = productMapper.toProductEntity(create, imageFile, user);
 
         checkProductsNames(create.getProductsNames());
-
-        UserProduct userProduct = userProductMapper.toOrderProductEntity(user, product);
-
-        userProductRepository.save(userProduct);
 
         productRepository.save(product);
     }
@@ -90,7 +81,10 @@ public class ProductService {
 
     public List<ProductResDtos.READ_MY_PRODUCT> getMyProducts(String identity) {
 
-        List<Product> products = userProductRepository.findProductByUserIdentity(identity);
+        final User user = userRepository.findByIdentity(identity)
+                .orElseThrow(() -> new NotFoundException());
+
+        List<Product> products = productRepository.findByUser(user);
 
         return products.stream()
                 .map(productMapper::toReadMyProduct)
@@ -141,8 +135,9 @@ public class ProductService {
         final Product product = productRepository.findByProductsNames(delete.getProductsNames())
                 .orElseThrow(() -> new NotFoundException());
 
-        final OrderProduct orderProduct = orderProductRepository.findByProduct_ProductsNames(delete.getProductsNames())
-                        .orElseThrow(() -> new NotFoundException());
+        final List<OrderProduct> orderProduct = orderProductRepository.findByProduct(product);
+
+        orderProductRepository.deleteAll(orderProduct);
 
         productRepository.delete(product);
     }
