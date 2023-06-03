@@ -96,4 +96,7 @@ button.signup_button {
   font-size: 16px;
   padding: 0;
 }
+    * {
+    font-family: 'Jua', sans-serif;
 
+    }

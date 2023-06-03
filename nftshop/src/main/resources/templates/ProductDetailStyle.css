@@ -187,3 +187,7 @@ button{
 button:hover{
     background-color: #d4864e;
 }
+
+* {
+  font-family: 'Jua', sans-serif;
+}
