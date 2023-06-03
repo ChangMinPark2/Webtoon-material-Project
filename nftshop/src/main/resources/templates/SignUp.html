@@ -40,14 +40,17 @@
             <label for="birth">Birth</label>
             <input type="text" id="birth" required>
         </div>
-        <select id="gender"
-                class="form-select"
-                style="margin-bottom: 10px">
-            <option value="" selected disabled hidden>성별</option>
-            <option value="MALE">남자</option>
-            <option value="FEMALE">여자</option>
-        </select>
-        <button onclick="create()">Sign up</button>
+        <div class="field">
+            <select id="gender"
+                    class="form-select"
+                    style="margin-bottom: 3px">
+                <option value="" selected disabled hidden>성별</option>
+                <option value="MALE">남자</option>
+                <option value="FEMALE">여자</option>
+            </select>
+        </div>
+        <hr>
+        <button class="signup_button" onclick="create()">Sign up</button>
     </div>
 </div>
 </body>

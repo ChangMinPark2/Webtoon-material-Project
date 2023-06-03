@@ -31,7 +31,7 @@ h1 {
 }
 .member_check a {
   text-decoration: none;
-  color: skyblue;
+  color: #d49466;
 }
 .field {
   margin: 10px 0px;
@@ -56,8 +56,9 @@ input {
 }
 input:focus {
   outline-style: none;
-  border-color: skyblue;
+  border-color: #d49466;
 }
+
 .gender_radio {
   display: flex;
   align-items: center;
@@ -82,7 +83,7 @@ button.signup_button {
   border: 0;
   margin: 15px 0px;
   font-size: 15px;
-  background-color:skyblue;
+  background-color:#d49466;
 }
 .find_password {
   margin-top: 40px;
