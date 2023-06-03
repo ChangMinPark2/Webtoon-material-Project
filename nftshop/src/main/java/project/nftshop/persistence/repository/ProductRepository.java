@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.nftshop.persistence.entity.Product;
+import project.nftshop.persistence.entity.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +21,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findTop4ByOrderByQuantitySaleDesc();
 
     Boolean existsByProductsNames(String ProductsNames);
+
+    List<Product> findByUser(User user);
 }

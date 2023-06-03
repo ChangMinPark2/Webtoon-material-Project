@@ -29,8 +29,4 @@ public class ImageFile extends BaseEntity {
         this.saveName = saveName;
         this.contentType = contentType;
     }
-
-//    public void updateProduct(Product product){
-//        this.product = product;
-//    }
 }

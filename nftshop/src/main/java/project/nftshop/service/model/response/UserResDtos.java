@@ -2,7 +2,6 @@ package project.nftshop.service.model.response;
 
 import lombok.*;
 import project.nftshop.service.model.Gender;
-
 import java.util.List;
 
 public class UserResDtos {

@@ -2,8 +2,6 @@ package project.nftshop.service.model.response;
 
 import lombok.*;
 
-import java.util.List;
-
 public class ProductResDtos {
 
     @Getter
