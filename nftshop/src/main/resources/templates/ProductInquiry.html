@@ -33,6 +33,17 @@
     table.table {
       margin-bottom: 20px;
     }
+
+    input {
+        width: 100%;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    li.items{
+
+    }
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -43,26 +54,24 @@
     .container {
       float: left;
       max-width: 400px;
-      margin-top: 50px;
-      margin-left: 50px;
+      margin: 20px auto;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
       background-color: #fff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .date {
       text-align: left;
       font-size: 15px;
       margin-bottom: 10px;
       margin-top: 10px;
      }
-
     .container2 {
-      display: flex;
-      margin: 30px auto;
-      flex-direction: row;
-      display: inline-flex
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .payment {
@@ -70,19 +79,29 @@
     font-size: 20px;
     }
 
+    .items {
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+
+
     .order-info {
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+        display: inline-block;
+        margin-right: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
 
     .order-info:hover {
       background-color: rgba(141, 39, 17, 0.21);
     }
 
-    .product{
-      text-align:center
-    }
+    /*.product{*/
+    /*  text-align:center*/
+    /*}*/
     * {
   font-family: 'Jua', sans-serif;
 }
@@ -120,67 +139,13 @@
     </h1>
 </div>
 <body>
-<div class="container" >
-    <div style="margin-bottom:20px;" id="orderList">1</div>
-    <div class="order-info">
-        <hr>
-        <div class="container2">
-            <span class="product" id="productName">작품 이름</span>
-        </div>
-        <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
-        </div>
-    </div>
 </div>
-<div class="container">
-    <div style="margin-bottom:20px;" id="orderList">1</div>
-    <div class="order-info">
-        <hr>
-        <div class="container2">
-            <span class="product" id="productName">작품 이름</span>
+    <ul id="productList">
+        <div class="items">
+            <section>
+            </section>
         </div>
-        <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div style="margin-bottom:20px;" id="orderList">1</div>
-    <div class="order-info">
-        <hr>
-        <div class="container2">
-            <span class="product" id="productName">작품 이름</span>
-        </div>
-        <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div style="margin-bottom:20px;" id="orderList">1</div>
-    <div class="order-info">
-        <hr>
-        <div class="container2">
-            <span class="product" id="productName">작품 이름</span>
-        </div>
-        <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div style="margin-bottom:20px;" id="orderList">1</div>
-    <div class="order-info">
-        <hr>
-        <div class="container2">
-            <span class="product" id="productName">작품 이름</span>
-        </div>
-        <div>
-            <a href=""><img src="test1.jpg" width="250" height="250" alt="내상품이미지" id="image"></a>
-        </div>
-    </div>
+    </ul>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -198,35 +163,53 @@
                 const data = response.data;
                 console.log(data);
                 if (data.result) {
-
                     const productList = data.data;
-                    const productListElement = document.getElementById('orderList');
+                    const productListElement = document.getElementById('productList');
 
-                    productList.forEach(function(order) {
-                        const orderInfo = document.createElement('div');
-                        orderInfo.classList.add('order-info');
+                    productList.forEach(function(product) {
+                        const li = document.createElement('li');
+                        li.classList.add('items');
 
-                        const container2 = document.createElement('div');
-                        container2.classList.add('container2');
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.style.width = '300px'; // 크기 고정
 
-                        const productName = document.createElement('span');
-                        productName.classList.add('product');
-                        productName.textContent = order.productsNames;
-                        container2.appendChild(productName);
+                        const image = document.createElement('img');
+                        image.src = 'productsImg/' + product.saveName;
+                        image.classList.add('card-img-top');
 
-                        const productImage = document.createElement('img');
-                        productImage.src = 'productsImg/' + order.saveName;
-                        productImage.width = 250;
-                        productImage.height = 250;
-                        productImage.alt = '내상품이미지';
+                        const cardBody = document.createElement('div');
+                        cardBody.classList.add('card-body');
 
-                        const productLink = document.createElement('a');
-                        productLink.href = '#';
-                        productLink.appendChild(productImage);
+                        const cardTitle = document.createElement('h5');
+                        cardTitle.classList.add('card-title');
+                        cardTitle.innerText = '배경';
 
-                        orderInfo.appendChild(container2);
-                        orderInfo.appendChild(productLink);
-                        productListElement.appendChild(orderInfo);
+                        const cardText = document.createElement('p');
+                        cardText.classList.add('card-text');
+                        cardText.innerText = '제품명: ' + product.productsNames;
+
+                        cardBody.appendChild(cardTitle);
+                        cardBody.appendChild(cardText);
+
+                        card.appendChild(image);
+                        card.appendChild(cardBody);
+
+                        card.addEventListener('click', function() {
+                            // 클릭한 제품의 이름
+                            var productName = product.productsNames;
+
+                            // 쿠키에 제품 이름 저장
+                            document.cookie = "productName=" + productName;
+
+                            // ProductDetail.html로 화면 전환
+                            window.location.href = "UpdateProduct.html";
+                        });
+
+
+                        li.appendChild(card);
+                        productListElement.appendChild(li);
+
                     });
                 } else {
                     console.log('No orders found.');

@@ -165,6 +165,7 @@
     <img class="searchimg" id="search" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" style="position: absolute; top: 10px; right: 12px; margin: 0;" width="17px" onclick="handleSearch()"></img>
 
 </div>
+
     <ul id="productList">
     <div class="items">
         <section>
@@ -185,7 +186,6 @@
                 console.log(data);
                 if (data.result) {
                     const productList = data.data; // 응답 데이터의 배열
-
                     const productListElement = document.getElementById('productList');
 
                     productList.forEach(function(product) {
@@ -194,7 +194,7 @@
 
                         const card = document.createElement('div');
                         card.classList.add('card');
-                        card.style.width = '360px'; // 크기 고정
+                        card.style.width = '300px'; // 크기 고정
 
                         const image = document.createElement('img');
                         image.src = 'productsImg/' + product.saveName;
@@ -240,7 +240,16 @@
                 console.log(error);
             });
     };
+    function handleSearch() {
+        // 클릭한 제품의 이름
+        var productName = document.getElementById('productName').value;
 
+        // 쿠키에 제품 이름 저장
+        document.cookie = "productName=" + productName;
+
+        // ProductDetail.html로 화면 전환
+        window.location.href = "ProductDetail.html";
+    }
     function displayProductDetails(product) {
         // 클릭한 제품의 세부 정보를 표시하는 로직 작성
         // 예시: 제품의 정보를 모달창 등에 표시
