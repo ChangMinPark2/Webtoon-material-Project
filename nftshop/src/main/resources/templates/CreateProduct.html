@@ -132,8 +132,8 @@
         </div>
 
         <div class="right">
-            <input type="text" id="identity" name="identity" placeholder="아이디" required>
-            <input type="password" id="password" name="password" placeholder="비밀번호" required autocomplete="current-password">
+<!--            <input type="text" id="identity" name="identity" placeholder="아이디" required>-->
+<!--            <input type="password" id="password" name="password" placeholder="비밀번호" required autocomplete="current-password">-->
 
             <input type="text" id="productsNames" name="productsNames" placeholder="상품이름" required>
 
@@ -152,19 +152,19 @@
     function createProduct() {
         const fileInput = document.getElementById("product-image");
         const imageFile = fileInput.files[0];
-        const identity = document.getElementById("identity").value;
-        const password = document.getElementById("password").value;
+        // const identity = document.getElementById("identity").value;
+        // const password = document.getElementById("password").value;
         const productsNames = document.getElementById("productsNames").value;
         const price = document.getElementById("price").value;
         const description = document.getElementById("description").value;
         const cookieValue = getCookie("identity");
-        if (cookieValue !== identity) {
-            alert("회원 정보가 일치하지 않습니다.");
-            return;
-        }
+        // if (cookieValue !== identity) {
+        //     alert("회원 정보가 일치하지 않습니다.");
+        //     return;
+        // }
         const create = {
-            identity: identity,
-            password: password,
+            identity: getCookie("identity"),
+            password: getCookie("password"),
             productsNames: productsNames,
             description: description,
             price: parseInt(price)

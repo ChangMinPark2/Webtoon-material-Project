@@ -134,24 +134,6 @@
 </form>
 </body>
 <script>
-  window.onload = function() {
-    // 페이지가 로드되었을 때 실행되는 코드
-
-    // 이미지를 적용할 요소의 ID를 가져옵니다
-    var productImage = document.getElementById("product-image");
-
-
-    var saveName = getCookie(saveName);
-    console.log(saveName);
-    productImage.src = 'productsImg/' + saveName;
-
-  };
-
-  // 버튼 클릭 이벤트 처리
-  document.getElementById("back").addEventListener("click", function() {
-    window.location.href = "UserUpdate.html";
-  });
-
   function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
@@ -160,6 +142,16 @@
     }
     return null;
   }
+
+  window.addEventListener("DOMContentLoaded", function() {
+    const productImage = document.getElementById("product-image");
+    const cookieValue = getCookie("saveName");
+
+    if (productImage && cookieValue) {
+      productImage.src = 'productsImg/' + cookieValue;
+
+    }
+  });
 
 </script>
 </html>
