@@ -198,9 +198,11 @@
                         card.addEventListener('click', function() {
                             // 클릭한 제품의 이름
                             var productName = product.productsNames;
+                            var saveName = product.saveName;
 
                             // 쿠키에 제품 이름 저장
                             document.cookie = "productName=" + productName;
+                            document.cookie = "saveName=" + saveName;
 
                             // ProductDetail.html로 화면 전환
                             window.location.href = "UpdateProduct.html";
