@@ -2,6 +2,9 @@
 ![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/a50a5dd5-0d0c-4225-bc82-6a8094d37d43)
 
 <br><br>
+![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/d8da5ffd-c8f0-4b48-92dd-c66ef49d7328)
+
+<br><br>
 
 # 프로젝트 제안 배경
 ![프로젝트배경](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/3fdb4dbd-6923-4133-a9ee-46140ecfd653)
