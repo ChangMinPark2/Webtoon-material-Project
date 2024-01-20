@@ -1,4 +1,4 @@
-# 웹툰 소재 거래 사이트
+# 📖웹툰 소재 거래 사이트📖
 * 삼육대학교 sw캡스톤 디자인 프로젝트
 <br><br>
 ## 메인 페이지
@@ -40,3 +40,8 @@
 ![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/7d0124d4-3138-4c08-aeb7-85fd2617782b)
 
 <br><br>
+
+# 기대 효과
+![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/6779e4e3-3a11-4b9a-86d4-58b3ef5095db)
+
+
