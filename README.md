@@ -1,5 +1,6 @@
 # 📖웹툰 소재 거래 사이트📖
 * 삼육대학교 sw캡스톤 디자인 프로젝트
+* [블로그 회고] https://98qkrckdals.tistory.com/4
 <br><br>
 ## 메인 페이지
 ![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/9db9c6b4-b2c1-4eda-bba0-0c62bff37e0e)
