@@ -1,8 +1,15 @@
 # 웹툰 소재 거래 사이트
-![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/a50a5dd5-0d0c-4225-bc82-6a8094d37d43)
-
+* 삼육대학교 sw캡스톤 디자인 프로젝트
 <br><br>
-![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/d8da5ffd-c8f0-4b48-92dd-c66ef49d7328)
+## 메인 페이지
+![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/9db9c6b4-b2c1-4eda-bba0-0c62bff37e0e)
+<br>
+## 상품 판매 페이지
+![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/a97bee3b-03e7-4277-beea-fc6e1a647d87)
+<br>
+## 주문 페이지
+![image](https://github.com/ChangMinPark2/Webtoon-material-Project/assets/110027004/7cbfd83d-2570-4587-bce8-fee18fccab4d)
+
 
 <br><br>
 
